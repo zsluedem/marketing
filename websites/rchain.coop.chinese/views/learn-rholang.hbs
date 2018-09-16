@@ -32,14 +32,12 @@
             <h1 id="sending-and-standard-out">发送与标准输出(stdout)</h1>
             <h2 id="say-hello">说声Hello</h2>
             <p class="imgWrapper"><img src="/assets/helloWorld.png" alt="&quot;Person waiving hello&quot;"></p>
-            <p>There is a long-standing tradition in programming that your first program should say &quot;Hello World&quot;. Here&#39;s the simplest rholang code to put that text on the screen.</p>
             <p>编程界有一个存在已久的传统——你应该在你的第一个程序写下"Hello World"。下面是一个在屏幕上输出这段信息的最简单例子。</p>
 
             <pre class="rholang-file">new stdout('rho:io:stdout') in {
                 stdout!("Hello World!")}</pre>
 
             <h3 id="exercise">练习</h3>
-            <p>Make the program print &quot;Rholang rocks!&quot; instead of &quot;Hello World&quot;.</p>
             <p>请让程序输出"Rholang rocks!" 而不是 "Hello World".</p>
             <h3 id="exercise">练习</h3>
             <p>Try to change &quot;stdout&quot; to something else. Any results?.</p>
@@ -130,44 +128,46 @@
 
 
         <div class="card" id="receivingSection">
-            <h1 id="receiving">Receiving</h1>
-            <h2 id="check-for-messages">Check for Messages</h2>
+            <h1 id="receiving">接收</h1>
+            <h2 id="check-for-messages">消息检查</h2>
             <p class="imgWrapper"><img src="/assets/Keys.png" alt="// Dear future self, keys in freezer because..."></p>
             <p>We learned last time how to send a message. Now it&#39;s time to learn how to receive a message. The general syntax is:</p>
+            <p>在上一章我们学习了如何发送消息。现在是时候学习如何接收消息了。常规语法如下：</p>
             <p><code>for(message &lt;- channel){ // Do something here}</code></p>
-            <p>BTW, lines that start with <code>//</code> are called comments. They&#39;re just there for human coders and don&#39;t affect the way the program runs at all. They&#39;re a good idea, and you should use them! Anyone who reads your code (including your future self) will appreciate them.</p>
-            <h2 id="comm-events">Comm Events</h2>
+            <p>顺便提一下， <code>//</code> 用于书写注释。 它们仅仅是为了方便开发者阅读，并不会影响程序的运行。</p>
+            <h2 id="comm-events">通信事件</h2>
             <p class="imgWrapper"><img src="/assets/pizza.png" alt="Pizza shop can receive messages on its channel."></p>
-            <p>The following code sends a message on a channel for a pizza shop and the pizza shop receives it. The pizza shop acknowledges receiving the message by printing to stdout.</p>
-            <p><a href="pizzaOrder.rho">pizzaOrder</a></p>
-            <h3 id="exercise">Exercise</h3>
-            <p>Send that message to a different channel like <code>@&quot;coffeShop&quot;</code>. Did the acknowledgement print? Is anything left in the tuplespace?</p>
+            <p>下面的代码使用披萨店的通道发送了一个消息，pizza店收到了它。pizza店通过将消息打印至标准输出来表明其已收到。</p>
+            <p><a href="pizzaOrder.rho">pizza订单</a></p>
+            <h3 id="exercise">练习</h3>
+            <p>将上述消息发送至一个不同的通道，如<code>@&quot;coffeShop&quot;</code>. 消息会被接收端打印出来吗? 还是留在了元组空间里？</p>
             <p class="imgWrapper"><img src="/assets/coffee.png" alt="Let&#39;s hit up the coffee shop."></p>
-            <h3 id="exercise">Exercise</h3>
-            <p>Remember, in rholang things don&#39;t happen in order, they happen concurrently. The pizza shop code will work just as well if we put the receive first. Give it a try!</p>
-            <h2 id="tuplespace-pollution">Tuplespace Pollution</h2>
+            <h3 id="exercise">练习</h3>
+            <p>记住，在rholang中，任何事情都是并行地而非按顺序地发生。如果我们先接收信息，披萨店的代码仍然有效。</p>
+            <h2 id="tuplespace-pollution">元组空间污染</h2>
             <!-- TODO I really wasn't sure where to put this part -->
-            <p>If you&#39;re having trouble with old data sticking around and showing up later, you just need to clear your tuplespace. The easiest way to do that is to delete you data-directory which is usually called <code>.rnode</code></p>
+            <p>如果你遇到了旧数据滞留并在随后出现的困扰，你需要清空你的元组空间。最简单的方式是删除你的数据目录<code>.rnode</code></p>
             <!-- TODO I should write a script for this -->
 
-            <p>Clearing out your tuplespace that way can get old quickly. A better idea would be to keep it from getting polluted in the first place. We can do that by modifying the top line that says new.</p>
-            <p>Rather than the old way</p>
+            <p>使用上述方法清空元组空间已经过时了。一个更好的方法是防止它首先被污染。我们可以通过修改最上面的new代码段来实现。</p>
+            <p>旧的方案</p>
             <pre class="inline-code">new stdout(`rho:io:stdout`) in {
   @"world"!("Welcome to RChain")
 }</pre>
-            <p>Try this</p>
+            <p>尝试下面新的方案</p>
             <pre class="inline-code">new world, stdout(`rho:io:stdout`) in {
   world!("Welcome to RChain") // No more @ or " "
 }</pre>
-            <p>We&#39;ll talk about how this works in our lesson on Unforgeable names. for now just enjoy not having to reset every time.</p>
-            <h2 id="receiving-before-sending">Receiving Before Sending</h2>
+            <p>我们将在不可伪造命名的课程中讲解它的原理。现在你不需要每次都重置通道。</p>
+            <h2 id="receiving-before-sending">发送前接收</h2>
             <p class="imgWrapper"><img src="/assets/lookingForMessages.png" alt="Rather than the message appearing first, then someone receiving it, Greg is trying to receive first. Hopefully someone will send him a message so he can have a comm event."></p>
-            <p>When a send and a receive come together on a channel, it is called a communication event, or &quot;comm event&quot; for short.</p>
-            <p>Unlike normal mail where a message must be sent <em>then</em> received, the two can happen in either order or at the same time in rholang. It is just as acceptable to receive a message, then send it. Whenever a send and receive come together, a comm event takes place.</p>
-            <h2 id="contracts">Contracts</h2>
+            <p>当发送和接收同时存在于通道时，这被称为通信事件，或简称为"comm event"。</p>
+            <p>不像普通邮件那样必须被发送，对方才能被接收，在rholang中，上述两个事件可以以某个顺序或者同时发生。这类似于可以先接收消息，再发送它。每当发送和接收共存时，就会触发通信事件。</p>
+            <h2 id="contracts">合约</h2>
             <p class="imgWrapper"><img src="/assets/pizzaBurning.png" alt="The poor chef is too busy making sure he can receive orders to take care of his pizza."></p>
-            <p>Our pizza shop example illustrates comm events nicely, but it isn&#39;t very realistic to expect the pizza shop to manually issue a new receive every time an incoming order consumes theirs from the tuplespace.</p>
+            <p>我们的披萨店例子很好地说明了通信事件，但期望每次有新的订单时，披萨店都能自动发出一个新的接收来消耗它们，这并不现实。</p>
             <p>Luckily it&#39;s possible to deploy code once, and have it run <em>every</em> time it receives a message. This kind of thing is called a &quot;smart contract&quot;. Let&#39;s look at some code for a coffee shop that is much superior to the pizza shop.</p>
+            <p>幸运地是，只部署一次代码，<em>每次</em>接收到它的消息时都执行一次，是可能的。这类代码称为“智能合约”。让我们看一个比披萨店更高级的，咖啡店的相似例子</p>
 
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
   contract &commat;"coffeeShop"(order) = {
@@ -180,36 +180,37 @@
 }
 </pre>
 
-            <h3 id="exercise">Exercise</h3>
-            <p>Order a second drink from the coffee shop</p>
-            <h3 id="exercise">Exercise</h3>
-            <p>Change the acknowledgement message</p>
-            <p>Which should generally come first?</p>
+            <h3 id="exercise">练习</h3>
+            <p>在咖啡店点第二杯饮料</p>
+            <h3 id="exercise">练习</h3>
+            <p>更改确认消息</p>
+            <p>一般来说，下列哪一个会第一个到达</p>
             <ul class="quiz">
-                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> A send because that&#39;s how normal mail works.</li>
-                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> A receive because it&#39;s faster to run the code that way.</li>
-                <li><input  value="correct" type="radio" name="quiz4" class="quiz"> Either a send or a receive can come first, or they can come together.</li>
-                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> A receive because rholang is concurrent.</li>
-                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> Neither. Just make a comm event directly.</li>
+                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> 发送，因为它与普通邮件的工作原理一样。</li>
+                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> 接收，因为以该方式运行的代码更快。</li>
+                <li><input  value="correct" type="radio" name="quiz4" class="quiz"> 发送或接收都可以最先到达，或者同时。</li>
+                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> 接收，因为rohlang是并行的。</li>
+                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> 都不。直接触发通信事件(comm event)。</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz4Correct">Correct!</p>
-                <p class="incorrect" id="quiz4incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz4Correct">正确!</p>
+                <p class="incorrect" id="quiz4incorrect">错误。</p>
             </div>
-            <h3 id="exercise">Exercise</h3>
-            <p>The channel is just named <code>@&quot;coffeeShop&quot;</code>. Change it to be named after a specific coffee shop of your choosing. While you&#39;re at it, modify the code to use <code>new</code> like we recently learned.</p>
-            <h2 id="persistent-for">Persistent For</h2>
+            <h3 id="exercise">练习</h3>
+            <p>通道被命名为 <code>@&quot;coffeeShop&quot;</code>。将它更名为你所选择的特定咖啡店的名称。然后，使用我们最近学到的 <code>new</code> 来修改代码 </p>
+            <h2 id="persistent-for">持久性</h2>
             <p>There are actually two different styles of syntax in rholang to achieve this persistent behavior. We just learned about <code>contract</code>. The following snippets are equivalent.</p>
+            <p>实际上，在rholang中有两种不同的语法。我们只学习<code>contract</code>。下面的代码片段是等价的。</p>
             <pre class="inline-code">contract @"coffeeShop"(order) = {</pre><br>
             <pre class="inline-code">for(order &lt;= @"coffeeShop") {</pre>
-            <p>Notice this is different from a normal <code>for</code> because it has a double arrow <code>&lt;=</code> rather than a single arrow <code>&lt;-</code>. The only difference between the persistent for and a contract comes when we start talking about blockchains. For now you can think of them as the same thing.</p>
-            <h3 id="exercise">Exercise</h3>
-            <p>The pizza shop could use a contract like the one the coffee shop had. Let&#39;s write it one but use a persistent for instead of a contract. Try to write the entire thing from scratch so you remember the syntax better.</p>
+            <p>注意，上述代码与正常的<code>for</code> 不同，因为它使用了双箭头 <code>&lt;=</code> 而不是 <code>&lt;-</code>. 当我们开始讨论区块链时，持久性与合约的唯一区别就浮出水面了。现在你可以将它们当做同一件事。</p>
+            <h3 id="exercise">练习</h3>
+            <p>披萨店可以像咖啡店那样使用一个合约。让我们来使用持久性而非合约来书写。尝试通过scratch书写完整的代码，这样你可以更好地记住语法。</p>
             <!-- The solution is in persistentPizzaShop.rho
 [persistentPizzaShop.rho](persistentPizzaShop.rho) -->
 
 
-            <p>Which of these things is not like the other?</p>
+            <p>下面哪一项是其他两项不同的？</p>
             <ul class="quiz">
                 <li><input  value="correct" type="radio" name="quiz5" class="quiz"> <code>for (a &lt;- b){}</code></li>
                 <li><input value="incorrect" type="radio" name="quiz5" class="quiz"> <code>contract b(a) = {}</code></li>
@@ -219,15 +220,15 @@
                 <p class="correct" id="quiz5Correct">Correct!</p>
                 <p class="incorrect" id="quiz5incorrect">Incorrect. Please try again.</p>
             </div>
-            <p>Which send will produce a comm event with <code>for (message &lt;- @&quot;grandmasSnapChat&quot;){0}</code>?</p>
+            <p>哪一个发送语句会在执行<code>for (message &lt;- @&quot;grandmasSnapChat&quot;){0}</code>后产生一个通信事件 ?</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz6" class="quiz"> <code>grandmasSnapChat!(&quot;Hi Grandma&quot;)</code></li>
                 <li><input value="correct"  type="radio" name="quiz6" class="quiz"> <code>@&quot;grandmasSnapChat&quot;!(&quot;Glad you&#39;re snapping Grandma&quot;)</code></li>
                 <li><input value="incorrect" type="radio" name="quiz6" class="quiz"> <code>for(&quot;Here&#39;s a snap for you g&#39;ma&quot; &lt;- @&quot;grandmasSnapChat&quot;)</code></li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz6Correct">Correct!</p>
-                <p class="incorrect" id="quiz6incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz6Correct">正确!</p>
+                <p class="incorrect" id="quiz6incorrect">错误. 请重新尝试。</p>
             </div>
 
         </div>
