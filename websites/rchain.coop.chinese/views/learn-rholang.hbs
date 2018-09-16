@@ -1,13 +1,13 @@
 <div id="sideNav" class="">
     <div id="close">&lt; &lt; &lt;</div>
     <div>
-        <h6>Sending, Receiving, and other Fundamentals</h6>
+        <h6>发送、接收以及其他原理</h6>
         <ul>
-            <li><a id="sending" class="scroll" href="javascript:void(0)">Sending and Standard out</a></li>
-            <li><a id="receiving" class="scroll" href="javascript:void(0)">Receiving</a></li>
-            <li><a id="telephone" class="scroll" href="javascript:void(0)">Telephone, Names, and Processes</a></li>
-            <li><a id="sendAndPeek" class="scroll" href="javascript:void(0)">Persistant Send and Peek</a></li>
-            <li><a id="joinOperator" class="scroll" href="javascript:void(0)">Join Operator</a></li>
+            <li><a id="sending" class="scroll" href="javascript:void(0)">发送与标准输出</a></li>
+            <li><a id="receiving" class="scroll" href="javascript:void(0)">接收</a></li>
+            <li><a id="telephone" class="scroll" href="javascript:void(0)">电话、命名与进程</a></li>
+            <li><a id="sendAndPeek" class="scroll" href="javascript:void(0)">持续发送与峰值</a></li>
+            <li><a id="joinOperator" class="scroll" href="javascript:void(0)">"求并"运算符</a></li>
         </ul>
         <h6>Name Privacy</h6>
         <ul>
@@ -23,46 +23,52 @@
 
     <div class="lesson" id="fundamentals">
         <div class="card" id="intro">
-            <h6>Tutorials / Learn Rholang</h6>
-            <h2>Learn Rholang</h2>
-            <p>Learn rholang by example and experimentation. The examples and exercises are meant to be run, read, modified and completed. For best results, change anything and everything you are curious about. This tutorial is a tour of the most common and important features of rholang and a fast starting point for motivated learners.</p>
+            <h6>教程 / 学习Rholang</h6>
+            <h2>开始学习Rholang</h2>
+            <p>通过例子和实验来学习rholang。下面的例子和练习都很值得去运行、阅读、修改完善。更改任何你感到好奇的地方，能够收获最好的学习效果。该教程包含了rholang最常见以及最重要的特性，足以让开发者快速入门。</p>
         </div>
 
         <div class="card" id="sendingSection">
-            <h1 id="sending-and-standard-out">Sending and Standard Out</h1>
-            <h2 id="say-hello">Say Hello</h2>
+            <h1 id="sending-and-standard-out">发送与标准输出(stdout)</h1>
+            <h2 id="say-hello">说声Hello</h2>
             <p class="imgWrapper"><img src="/assets/helloWorld.png" alt="&quot;Person waiving hello&quot;"></p>
             <p>There is a long-standing tradition in programming that your first program should say &quot;Hello World&quot;. Here&#39;s the simplest rholang code to put that text on the screen.</p>
+            <p>编程界有一个存在已久的传统——你应该在你的第一个程序写下"Hello World"。下面是一个在屏幕上输出这段信息的最简单例子。</p>
 
             <pre class="rholang-file">new stdout('rho:io:stdout') in {
                 stdout!("Hello World!")}</pre>
 
-            <h3 id="exercise">Exercise</h3>
+            <h3 id="exercise">练习</h3>
             <p>Make the program print &quot;Rholang rocks!&quot; instead of &quot;Hello World&quot;.</p>
-            <h3 id="exercise">Exercise</h3>
+            <p>请让程序输出"Rholang rocks!" 而不是 "Hello World".</p>
+            <h3 id="exercise">练习</h3>
             <p>Try to change &quot;stdout&quot; to something else. Any results?.</p>
+            <p>尝试将"stdout"其他语句。会得到什么结果？</p>
+            <p></p>
             <ul>
-                <li>Try this funny channel name <pre><code>@&quot;someChannel&quot;</code></pre>.</li>
-                <li>We&#39;re casual here. Make the program say &quot;Sup World&quot; on the screen.</li>
+                <li>尝试一下这个有趣的通道名称 <pre><code>@&quot;someChannel&quot;</code></pre>.</li>
+                <li>这里可以比较随意。请让程序在屏幕上输出 "Sup World"。</li>
             </ul>
-            <h2 id="wth-is-stdout-">WTH is stdout?</h2>
+            <h2 id="wth-is-stdout-">标准输出(stdout)到底是啥</h2>
             <p class="imgWrapper"><img src="/assets/mailbox.png" alt="Channels are like mailboxes for sending messages"></p>
-            <p>The heart of rholang is communicating on channels. Channels are communication lines that you use to send and receive messages. To send a message on a channel, you use the <code>!</code> character.</p>
+            <p>rholang的核心是通道通信. 通道是你可以用来发送和接收消息的通信线路。你可以使用<code>!</code> 字符来在通道中发送消息.</p>
             <p class="imgWrapper"><img src="/assets/sendSyntax.png" alt="Redo this diagram!"></p>
             <p><code>stdout</code> is a special channel that is used to send text to &quot;standard out&quot; which usually just means your computer screen. Because it&#39;s special, we had to have that first line of code.</p>
-            <h2 id="using-other-channels">Using other channels</h2>
+            <p><code>stdout</code> 是一个特殊的通道，用于将文本发送至"标准输出",通常指你的电脑屏幕。正因为它的特殊，我们不得不将它写在代码的第一行。</p>
+            <h2 id="using-other-channels">使用其他通道</h2>
             <p class="imgWrapper"><img src="/assets/mailboxes.png" alt="Sent messages wait to be received here in &quot;message purgatory&quot;... JK, it&#39;s called the &quot;tuplespace&quot;"></p>
             <p>You can actually send messages on lots of channels, not just <code>stdout</code>. But unlike <code>stdout</code> they won&#39;t display on the screen.</p>
+            <p>实际上你可以在很多通道中发送消息，而非只有<code>stdout</code>. 但不像<code>stdout</code> 他们不会在屏幕上显示.</p>
 
-            <pre class="rholang-file">&commat;"RandoChannel"!("This won't be on the screen")
-</pre>
+            <pre class="rholang-file">&commat;"RandoChannel"!("This won't be on the screen")</pre>
 
-            <p>So where do the other channels go then? Nowhere! Not yet anyway. The messages just sit there waiting for someone to receive or &quot;consume&quot; them. We&#39;ll learn how to consume messages in the next lesson. The place where messages sit in the meantime is called the &quot;tuplespace&quot;.</p>
+            <p>那么，在其他通道中的消息将被发送至哪里？哪里都不会去！无论如何都不会。这些消息会继续待在通道内，等待某个程序去消费它们。我们将在下一课程中学习如何消费这些消息。同时，消息滞留所在的地方，我们称为 "元组空间"</p>
             <p>Remember when you tried it a few slides ago? Try that again and make sure your message is sitting in the tuplespace.</p>
+            <p>还记得你曾经在之前尝试写过下面这段代码么？请再一次尝试，并确保你的消息停留在元组空间中。</p>
             <p class="imgWrapper"><img src="/assets/tupleSpace.png" alt="You should find something like this highlighted text in your tuplespace."></p>
-            <h2 id="doing-two-things-at-once">Doing two things at once</h2>
+            <h2 id="doing-two-things-at-once">同时做两件事</h2>
             <p class="imgWrapper"><img src="/assets/cooking.png" alt="Rather than following an ordered list, all ingredients are added concurrently.  Looks delicions"></p>
-            <p>In rholang we don&#39;t tell the computer to do one thing, then another, then a third. Rather we tell it all the things to do, and it does them &quot;concurrently,&quot; or all at once.</p>
+            <p>在rholang中，我们不会告诉计算机做完一件事，再到另一件。相反，我们会告诉它需要做的所有事情，然后"并行地"执行它们，或者一次性执行。</p>
 
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
   stdout!("I'm on the screen")
@@ -71,35 +77,38 @@
 }
 </pre>
 
-            <p>The <code>|</code> is pronounced &quot;parallel&quot;, or &quot;par&quot; for short.</p>
-            <h3 id="exercise">Exercise</h3>
+            <p><code>|</code> 的发音是 &quot;parallel&quot, 可简称为 &quot;par&quot;.</p>
+            <h3 id="exercise">锻炼</h3>
             <p>Send the message &quot;1 large pepperoni please&quot; on a channel called &quot;pizza shop&quot;.</p>
-            <h3 id="exercise">Exercise</h3>
+            <p>向"pizza shop"通道发送消息"1 large peperoni please" </p>
+            <h3 id="exercise">锻炼</h3>
             <p>Send &quot;Hi Mom&quot; on the channel &quot;Mom&#39;s Phone&quot;.</p>
-            <h3 id="exercise">Exercise</h3>
+            <p>向"Mom's Phone"通道发送"Hi Mom"</p>
+            <h3 id="exercise">锻炼</h3>
             <p>Print two messages, &quot;Rick&quot; and &quot;Morty&quot;, on the screen in one program.</p>
-            <h2 id="quiz">Quiz</h2>
-            <p>What will <code>stdout!(&quot;Programming!&quot;)</code> print to the screen?</p>
+            <p>打印两个消息，"Rick"和 "Morty"</p>
+            <h2 id="quiz">小测试</h2>
+            <p><code>stdout!(&quot;Programming!&quot;)</code> 将在屏幕上打印什么？</p>
             <ul class="quiz">
                 <li><input type="radio" name="quiz1" value="correct" id="Programming!" class="quiz"> Programming!</li>
                 <li><input type="radio" name="quiz1" value="incorrect" id="stdout!" class="quiz"> stdout!</li>
                 <li><input type="radio" name="quiz1" value="incorrect" id="Nothing" class="quiz"> Nothing</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz1Correct">Correct!</p>
-                <p class="incorrect" id="quiz1incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz1Correct">正确!</p>
+                <p class="incorrect" id="quiz1incorrect">错误。请再试一次。</p>
             </div>
-            <p>What channel does <code>@&quot;what&quot;!(&quot;Up&quot;)</code> send a message on?</p>
+            <p> <code>@&quot;what&quot;!(&quot;Up&quot;)</code>在什么通道上发送消息？</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz2" class="quiz"> <code>@&quot;Up&quot;</code></li>
                 <li><input value="correct" type="radio" name="quiz2" class="quiz"> <code>@&quot;what&quot;</code></li>
                 <li><input value="incorrect" type="radio" name="quiz2" class="quiz"> <code>what</code></li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz2Correct">Correct!</p>
-                <p class="incorrect" id="quiz2incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz2Correct">正确!</p>
+                <p class="incorrect" id="quiz2incorrect">错误。请再试一次。</p>
             </div>
-            <p>Which does rholang do first in</p>
+            <p>rholang会先执行哪一条语句？</p>
             <pre class="inline-code">@"stdout"!("Dogs")
 |
 @"stdout"!("Cats")</pre>
@@ -109,11 +118,12 @@
                 <li><input value="correct" type="radio" name="quiz3" class="quiz"> Neither. They are concurrent</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz3Correct">Correct!</p>
-                <p class="incorrect" id="quiz3incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz3Correct">正确!</p>
+                <p class="incorrect" id="quiz3incorrect">错误。请再试一次。</p>
             </div>
             <p>PS. There is also a special channel called <code>stderr</code>. Check out what happens when you send to it.</p>
-            <p><a href="https://en.wikipedia.org/wiki/Standard_streams">what&#39;s the difference?</a></p>
+            <p>PS. 有一个特殊的通道 <code>stderr</code>. 请尝试一下看看往这个通道发送消息，会发生什么？</p>
+            <p><a href="https://en.wikipedia.org/wiki/Standard_streams">有什么区别?</a></p>
 
 
         </div>
