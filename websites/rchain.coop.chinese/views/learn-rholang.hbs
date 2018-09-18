@@ -5,7 +5,7 @@
         <ul>
             <li><a id="sending" class="scroll" href="javascript:void(0)">发送与标准输出</a></li>
             <li><a id="receiving" class="scroll" href="javascript:void(0)">接收</a></li>
-            <li><a id="telephone" class="scroll" href="javascript:void(0)">电话、命名与进程</a></li>
+            <li><a id="telephone" class="scroll" href="javascript:void(0)">电话、名称与进程</a></li>
             <li><a id="sendAndPeek" class="scroll" href="javascript:void(0)">持续发送与峰值</a></li>
             <li><a id="joinOperator" class="scroll" href="javascript:void(0)">"求并"运算符</a></li>
         </ul>
@@ -25,7 +25,8 @@
         <div class="card" id="intro">
             <h6>教程 / 学习Rholang</h6>
             <h2>开始学习Rholang</h2>
-            <p>通过例子和实验来学习rholang。下面的例子和练习都很值得去运行、阅读、修改完善。更改任何你感到好奇的地方，能够收获最好的学习效果。该教程包含了rholang最常见以及最重要的特性，足以让开发者快速入门。</p>
+            <p>
+                通过例子和实验来学习rholang。下面的例子和练习都很值得去运行、阅读、修改完善。更改任何你感到好奇的地方，能够收获最好的学习效果。该教程包含了rholang最常见以及最重要的特性，足以让开发者快速入门。</p>
         </div>
 
         <div class="card" id="sendingSection">
@@ -44,28 +45,43 @@
             <p>尝试将"stdout"其他语句。会得到什么结果？</p>
             <p></p>
             <ul>
-                <li>尝试一下这个有趣的通道名称 <pre><code>@&quot;someChannel&quot;</code></pre>.</li>
+                <li>尝试一下这个有趣的通道名称
+                    <pre><code>@&quot;someChannel&quot;</code></pre>
+                    .
+                </li>
                 <li>这里可以比较随意。请让程序在屏幕上输出 "Sup World"。</li>
             </ul>
             <h2 id="wth-is-stdout-">标准输出(stdout)到底是啥</h2>
-            <p class="imgWrapper"><img src="/assets/mailbox.png" alt="Channels are like mailboxes for sending messages"></p>
+            <p class="imgWrapper"><img src="/assets/mailbox.png" alt="Channels are like mailboxes for sending messages">
+            </p>
             <p>rholang的核心是通道通信. 通道是你可以用来发送和接收消息的通信线路。你可以使用<code>!</code> 字符来在通道中发送消息.</p>
             <p class="imgWrapper"><img src="/assets/sendSyntax.png" alt="Redo this diagram!"></p>
-            <p><code>stdout</code> is a special channel that is used to send text to &quot;standard out&quot; which usually just means your computer screen. Because it&#39;s special, we had to have that first line of code.</p>
+            <p><code>stdout</code> is a special channel that is used to send text to &quot;standard out&quot; which
+                usually just means your computer screen. Because it&#39;s special, we had to have that first line of
+                code.</p>
             <p><code>stdout</code> 是一个特殊的通道，用于将文本发送至"标准输出",通常指你的电脑屏幕。正因为它的特殊，我们不得不将它写在代码的第一行。</p>
             <h2 id="using-other-channels">使用其他通道</h2>
-            <p class="imgWrapper"><img src="/assets/mailboxes.png" alt="Sent messages wait to be received here in &quot;message purgatory&quot;... JK, it&#39;s called the &quot;tuplespace&quot;"></p>
-            <p>You can actually send messages on lots of channels, not just <code>stdout</code>. But unlike <code>stdout</code> they won&#39;t display on the screen.</p>
+            <p class="imgWrapper"><img src="/assets/mailboxes.png"
+                                       alt="Sent messages wait to be received here in &quot;message purgatory&quot;... JK, it&#39;s called the &quot;tuplespace&quot;">
+            </p>
+            <p>You can actually send messages on lots of channels, not just <code>stdout</code>. But unlike
+                <code>stdout</code> they won&#39;t display on the screen.</p>
             <p>实际上你可以在很多通道中发送消息，而非只有<code>stdout</code>. 但不像<code>stdout</code> 他们不会在屏幕上显示.</p>
 
             <pre class="rholang-file">&commat;"RandoChannel"!("This won't be on the screen")</pre>
 
-            <p>那么，在其他通道中的消息将被发送至哪里？哪里都不会去！无论如何都不会。这些消息会继续待在通道内，等待某个程序去消费它们。我们将在下一课程中学习如何消费这些消息。同时，消息滞留所在的地方，我们称为 "元组空间"</p>
-            <p>Remember when you tried it a few slides ago? Try that again and make sure your message is sitting in the tuplespace.</p>
+            <p>那么，在其他通道中的消息将被发送至哪里？哪里都不会去！无论如何都不会。这些消息会继续待在通道内，等待某个程序去消费它们。我们将在下一课程中学习如何消费这些消息。同时，消息滞留所在的地方，我们称为
+                "元组空间"</p>
+            <p>Remember when you tried it a few slides ago? Try that again and make sure your message is sitting in the
+                tuplespace.</p>
             <p>还记得你曾经在之前尝试写过下面这段代码么？请再一次尝试，并确保你的消息停留在元组空间中。</p>
-            <p class="imgWrapper"><img src="/assets/tupleSpace.png" alt="You should find something like this highlighted text in your tuplespace."></p>
+            <p class="imgWrapper"><img src="/assets/tupleSpace.png"
+                                       alt="You should find something like this highlighted text in your tuplespace.">
+            </p>
             <h2 id="doing-two-things-at-once">同时做两件事</h2>
-            <p class="imgWrapper"><img src="/assets/cooking.png" alt="Rather than following an ordered list, all ingredients are added concurrently.  Looks delicions"></p>
+            <p class="imgWrapper"><img src="/assets/cooking.png"
+                                       alt="Rather than following an ordered list, all ingredients are added concurrently.  Looks delicions">
+            </p>
             <p>在rholang中，我们不会告诉计算机做完一件事，再到另一件。相反，我们会告诉它需要做的所有事情，然后"并行地"执行它们，或者一次性执行。</p>
 
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
@@ -96,7 +112,7 @@
                 <p class="correct" id="quiz1Correct">正确!</p>
                 <p class="incorrect" id="quiz1incorrect">错误。请再试一次。</p>
             </div>
-            <p> <code>@&quot;what&quot;!(&quot;Up&quot;)</code>在什么通道上发送消息？</p>
+            <p><code>@&quot;what&quot;!(&quot;Up&quot;)</code>在什么通道上发送消息？</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz2" class="quiz"> <code>@&quot;Up&quot;</code></li>
                 <li><input value="correct" type="radio" name="quiz2" class="quiz"> <code>@&quot;what&quot;</code></li>
@@ -119,7 +135,8 @@
                 <p class="correct" id="quiz3Correct">正确!</p>
                 <p class="incorrect" id="quiz3incorrect">错误。请再试一次。</p>
             </div>
-            <p>PS. There is also a special channel called <code>stderr</code>. Check out what happens when you send to it.</p>
+            <p>PS. There is also a special channel called <code>stderr</code>. Check out what happens when you send to
+                it.</p>
             <p>PS. 有一个特殊的通道 <code>stderr</code>. 请尝试一下看看往这个通道发送消息，会发生什么？</p>
             <p><a href="https://en.wikipedia.org/wiki/Standard_streams">有什么区别?</a></p>
 
@@ -131,12 +148,14 @@
             <h1 id="receiving">接收</h1>
             <h2 id="check-for-messages">消息检查</h2>
             <p class="imgWrapper"><img src="/assets/Keys.png" alt="// Dear future self, keys in freezer because..."></p>
-            <p>We learned last time how to send a message. Now it&#39;s time to learn how to receive a message. The general syntax is:</p>
+            <p>We learned last time how to send a message. Now it&#39;s time to learn how to receive a message. The
+                general syntax is:</p>
             <p>在上一章我们学习了如何发送消息。现在是时候学习如何接收消息了。常规语法如下：</p>
             <p><code>for(message &lt;- channel){ // Do something here}</code></p>
             <p>顺便提一下， <code>//</code> 用于书写注释。 它们仅仅是为了方便开发者阅读，并不会影响程序的运行。</p>
             <h2 id="comm-events">通信事件</h2>
-            <p class="imgWrapper"><img src="/assets/pizza.png" alt="Pizza shop can receive messages on its channel."></p>
+            <p class="imgWrapper"><img src="/assets/pizza.png" alt="Pizza shop can receive messages on its channel.">
+            </p>
             <p>下面的代码使用披萨店的通道发送了一个消息，pizza店收到了它。pizza店通过将消息打印至标准输出来表明其已收到。</p>
             <p><a href="pizzaOrder.rho">pizza订单</a></p>
             <h3 id="exercise">练习</h3>
@@ -158,15 +177,21 @@
             <pre class="inline-code">new world, stdout(`rho:io:stdout`) in {
   world!("Welcome to RChain") // No more @ or " "
 }</pre>
-            <p>我们将在不可伪造命名的课程中讲解它的原理。现在你不需要每次都重置通道。</p>
+            <p>我们将在不可伪造名称的课程中讲解它的原理。现在你不需要每次都重置通道。</p>
             <h2 id="receiving-before-sending">发送前接收</h2>
-            <p class="imgWrapper"><img src="/assets/lookingForMessages.png" alt="Rather than the message appearing first, then someone receiving it, Greg is trying to receive first. Hopefully someone will send him a message so he can have a comm event."></p>
+            <p class="imgWrapper"><img src="/assets/lookingForMessages.png"
+                                       alt="Rather than the message appearing first, then someone receiving it, Greg is trying to receive first. Hopefully someone will send him a message so he can have a comm event.">
+            </p>
             <p>当发送和接收同时存在于通道时，这被称为通信事件，或简称为"comm event"。</p>
             <p>不像普通邮件那样必须被发送，对方才能被接收，在rholang中，上述两个事件可以以某个顺序或者同时发生。这类似于可以先接收消息，再发送它。每当发送和接收共存时，就会触发通信事件。</p>
             <h2 id="contracts">合约</h2>
-            <p class="imgWrapper"><img src="/assets/pizzaBurning.png" alt="The poor chef is too busy making sure he can receive orders to take care of his pizza."></p>
+            <p class="imgWrapper"><img src="/assets/pizzaBurning.png"
+                                       alt="The poor chef is too busy making sure he can receive orders to take care of his pizza.">
+            </p>
             <p>我们的披萨店例子很好地说明了通信事件，但期望每次有新的订单时，披萨店都能自动发出一个新的接收来消耗它们，这并不现实。</p>
-            <p>Luckily it&#39;s possible to deploy code once, and have it run <em>every</em> time it receives a message. This kind of thing is called a &quot;smart contract&quot;. Let&#39;s look at some code for a coffee shop that is much superior to the pizza shop.</p>
+            <p>Luckily it&#39;s possible to deploy code once, and have it run <em>every</em> time it receives a message.
+                This kind of thing is called a &quot;smart contract&quot;. Let&#39;s look at some code for a coffee shop
+                that is much superior to the pizza shop.</p>
             <p>幸运地是，只部署一次代码，<em>每次</em>接收到它的消息时都执行一次，是可能的。这类代码称为“智能合约”。让我们看一个比披萨店更高级的，咖啡店的相似例子</p>
 
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
@@ -186,24 +211,27 @@
             <p>更改确认消息</p>
             <p>一般来说，下列哪一个会第一个到达</p>
             <ul class="quiz">
-                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> 发送，因为它与普通邮件的工作原理一样。</li>
-                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> 接收，因为以该方式运行的代码更快。</li>
-                <li><input  value="correct" type="radio" name="quiz4" class="quiz"> 发送或接收都可以最先到达，或者同时。</li>
-                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> 接收，因为rohlang是并行的。</li>
-                <li><input  value="incorrect" type="radio" name="quiz4" class="quiz"> 都不。直接触发通信事件(comm event)。</li>
+                <li><input value="incorrect" type="radio" name="quiz4" class="quiz"> 发送，因为它与普通邮件的工作原理一样。</li>
+                <li><input value="incorrect" type="radio" name="quiz4" class="quiz"> 接收，因为以该方式运行的代码更快。</li>
+                <li><input value="correct" type="radio" name="quiz4" class="quiz"> 发送或接收都可以最先到达，或者同时。</li>
+                <li><input value="incorrect" type="radio" name="quiz4" class="quiz"> 接收，因为rohlang是并行的。</li>
+                <li><input value="incorrect" type="radio" name="quiz4" class="quiz"> 都不。直接触发通信事件(comm event)。</li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz4Correct">正确!</p>
                 <p class="incorrect" id="quiz4incorrect">错误。</p>
             </div>
             <h3 id="exercise">练习</h3>
-            <p>通道被命名为 <code>@&quot;coffeeShop&quot;</code>。将它更名为你所选择的特定咖啡店的名称。然后，使用我们最近学到的 <code>new</code> 来修改代码 </p>
+            <p>通道被名称为 <code>@&quot;coffeeShop&quot;</code>。将它更名为你所选择的特定咖啡店的名称。然后，使用我们最近学到的 <code>new</code> 来修改代码 </p>
             <h2 id="persistent-for">持久性</h2>
-            <p>There are actually two different styles of syntax in rholang to achieve this persistent behavior. We just learned about <code>contract</code>. The following snippets are equivalent.</p>
+            <p>There are actually two different styles of syntax in rholang to achieve this persistent behavior. We just
+                learned about <code>contract</code>. The following snippets are equivalent.</p>
             <p>实际上，在rholang中有两种不同的语法。我们只学习<code>contract</code>。下面的代码片段是等价的。</p>
-            <pre class="inline-code">contract @"coffeeShop"(order) = {</pre><br>
+            <pre class="inline-code">contract @"coffeeShop"(order) = {</pre>
+            <br>
             <pre class="inline-code">for(order &lt;= @"coffeeShop") {</pre>
-            <p>注意，上述代码与正常的<code>for</code> 不同，因为它使用了双箭头 <code>&lt;=</code> 而不是 <code>&lt;-</code>. 当我们开始讨论区块链时，持久性与合约的唯一区别就浮出水面了。现在你可以将它们当做同一件事。</p>
+            <p>注意，上述代码与正常的<code>for</code> 不同，因为它使用了双箭头 <code>&lt;=</code> 而不是 <code>&lt;-</code>.
+                当我们开始讨论区块链时，持久性与合约的唯一区别就浮出水面了。现在你可以将它们当做同一件事。</p>
             <h3 id="exercise">练习</h3>
             <p>披萨店可以像咖啡店那样使用一个合约。让我们来使用持久性而非合约来书写。尝试通过scratch书写完整的代码，这样你可以更好地记住语法。</p>
             <!-- The solution is in persistentPizzaShop.rho
@@ -212,8 +240,9 @@
 
             <p>下面哪一项是其他两项不同的？</p>
             <ul class="quiz">
-                <li><input  value="correct" type="radio" name="quiz5" class="quiz"> <code>for (a &lt;- b){}</code></li>
-                <li><input value="incorrect" type="radio" name="quiz5" class="quiz"> <code>contract b(a) = {}</code></li>
+                <li><input value="correct" type="radio" name="quiz5" class="quiz"> <code>for (a &lt;- b){}</code></li>
+                <li><input value="incorrect" type="radio" name="quiz5" class="quiz"> <code>contract b(a) = {}</code>
+                </li>
                 <li><input value="incorrect" type="radio" name="quiz5" class="quiz"> <code>for (a &lt;= b){}</code></li>
             </ul>
             <div class="quizResponse">
@@ -222,9 +251,12 @@
             </div>
             <p>哪一个发送语句会在执行<code>for (message &lt;- @&quot;grandmasSnapChat&quot;){0}</code>后产生一个通信事件 ?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz6" class="quiz"> <code>grandmasSnapChat!(&quot;Hi Grandma&quot;)</code></li>
-                <li><input value="correct"  type="radio" name="quiz6" class="quiz"> <code>@&quot;grandmasSnapChat&quot;!(&quot;Glad you&#39;re snapping Grandma&quot;)</code></li>
-                <li><input value="incorrect" type="radio" name="quiz6" class="quiz"> <code>for(&quot;Here&#39;s a snap for you g&#39;ma&quot; &lt;- @&quot;grandmasSnapChat&quot;)</code></li>
+                <li><input value="incorrect" type="radio" name="quiz6" class="quiz"> <code>grandmasSnapChat!(&quot;Hi
+                    Grandma&quot;)</code></li>
+                <li><input value="correct" type="radio" name="quiz6" class="quiz"> <code>@&quot;grandmasSnapChat&quot;!(&quot;Glad
+                    you&#39;re snapping Grandma&quot;)</code></li>
+                <li><input value="incorrect" type="radio" name="quiz6" class="quiz"> <code>for(&quot;Here&#39;s a snap
+                    for you g&#39;ma&quot; &lt;- @&quot;grandmasSnapChat&quot;)</code></li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz6Correct">正确!</p>
@@ -236,9 +268,13 @@
         <div class="card" id="telephoneSection">
             <h1 id="telephone-names-and-processes">Telephone, Names, and Processes</h1>
             <h2 id="message-relaying">Message Relaying</h2>
-            <p class="imgWrapper"><img src="/assets/telephone.png" alt="The game of telephone is perfect to simulate message forwarding in rholang."></p>
-            <p>We&#39;ve previously learned how to send a message to grandma or a pizza shop. But so far all those recipients have done is acknowledge the message by printing to standard output.</p>
-            <p>Now let&#39;s make them do something more interesting by passing the message along like in a child&#39;s telephone game</p>
+            <p class="imgWrapper"><img src="/assets/telephone.png"
+                                       alt="The game of telephone is perfect to simulate message forwarding in rholang.">
+            </p>
+            <p>We&#39;ve previously learned how to send a message to grandma or a pizza shop. But so far all those
+                recipients have done is acknowledge the message by printing to standard output.</p>
+            <p>Now let&#39;s make them do something more interesting by passing the message along like in a child&#39;s
+                telephone game</p>
 
             <pre class="rholang-file"><code>new stdout(`rho:io:stdout`) in {
   // Start the game by sending a message to Alice
@@ -261,120 +297,136 @@
 }
 </code></pre>
 
-            <p>As the message says, you learn most when you experiment. So be sure to change things as you see fit.</p>
-            <h3 id="exercise">Exercise</h3>
-            <p>That telephone game was fun, but it&#39;s always better the have more players. Go ahead and add a third player called Charlie. Instead of printing to <code>stdout</code>, bob will send the message along to Charlie. Then Charlie will print it to the screen. The More the Merrier!</p>
-            <p class="imgWrapper"><img src="/assets/telephoneChangedMessage.png" alt="The message never seems to get there correctly. I blame Bob."></p>
-            <h3 id="exercise">Exercise</h3>
-            <p>If you&#39;ve ever actually played telephone, you know that the message rarely arrives in tact. Bob decided to mix it up by passing along a false message. Change the program so Bob passes along a different message regardless of what he receives.</p>
-            <h2 id="wth-is-that-">WTH is That <code>*</code>?</h2>
+            <p>正如消息所言，通过实验你收获得最多。因此，请你确保按照合适的方式来更改它。</p>
+            <h3 id="exercise">练习</h3>
+            <p>传话游戏很有趣，但有更多玩家参与会更好。请添加第三位明教Charlie的玩家。bob将发送消息给Charlie，而不是简单打印至<code>stdout</code>。然后Charlie将它打印至屏幕上。多多益善!
+            </p>
+            <p class="imgWrapper"><img src="/assets/telephoneChangedMessage.png"
+                                       alt="The message never seems to get there correctly. I blame Bob."></p>
+            <h3 id="exercise">练习</h3>
+            <p>如果你曾经玩过电话，你应该知道，消息极少能被完整地传递。Bob决定通过传递一条错误的消息来混淆它。改写程序，使得Bob无论收到什么，都能传递不同的消息。</p>
+            <h2 id="wth-is-that-"><code>*</code>这到底是啥？</h2>
             <p class="imgWrapper"><img src="/assets/inverse.png" alt="Opposites attract"></p>
-            <p>Did you notice the <code>*</code> in <code>@&quot;Bob&quot;!(*message)</code>? In rholang there are two kinds of things, &quot;names&quot; and &quot;processes&quot;. There are also ways to convert between the two.</p>
+            <p>你注意到 <code>@&quot;Bob&quot;!(*message)</code>中的<code>*</code>? 在rholang中有两种类型，
+                &quot;names&quot; and &quot;processes&quot;. 同样也有可以在两者之间互相转化的方法。</p>
             <!-- TODO: Maybe an illustration of arrows labeled * and @ would be better here? -->
 
-            <p>A &quot;process&quot; is any piece of rholang code such as our telephone game, or our pizza shop order program. Processes can be big hundred-line programs or small on-liners. They can even be tiny pieces of code that are just values. Here are some example processes.</p>
+            <p>"进程"是rho语言中任何一个代码片段，例如我们的传话筒游戏，或者是披萨店订单程序。进程可以是上百行的大程序，也可以只有几行。它们甚至可以是用于表示值的微小代码片段。</p>
             <ul>
-                <li><code>stdout!(&quot;Sup Rholang?&quot;)</code> A common send</li>
-                <li><code>0</code> The smallest possible process. It literally means &quot;do nothing&quot;.</li>
-                <li><code>for(msg &lt;- @&quot;phone&quot;){0}</code> A common receive that does nothing when a message arrives.</li>
-                <li><code>&quot;Hello World&quot;</code> Another small process that also does nothing. These are called &quot;Ground Terms&quot;.</li>
+                <li><code>stdout!(&quot;Sup Rholang?&quot;)</code> 一个常见的发送操作。</li>
+                <li><code>0</code> 最小的进程。如字面意思，它不做任何事。</li>
+                <li><code>for(msg &lt;- @&quot;phone&quot;){0}</code> 一个常见的接收操作，在消息到达时它不会做任何事。</li>
+                <li><code>&quot;Hello World&quot;</code> 另一个不做任何事请的小进程。被称为"基础术语"。</li>
             </ul>
-            <p>A name is something that can be used as a channel to send messages over. In most programming languages, names are totally separate things that exist on their own. But in rholang, names come from &quot;quoting processes&quot; by putting the <code>@</code> sign before a process. Here are some example names.</p>
+            <p>名称可以被用于赋名通道以发送消息。在大多数编程语言中，名称是完全独立的，它们本身就存在。但是在rho语言中，名称来自"引用进程"，即将<code>@</code>标签放在进程之前。</p>
             <ul>
-                <li><code>@&quot;Hello World&quot;</code> Made by quoting the ground term &quot;Hello World&quot;.</li>
-                <li><code>@0</code> The smallest possible name. Made by quoting the smallest possible process.</li>
-                <li><code>@(@&quot;Alice&quot;!(&quot;I like rholang, pass it on.&quot;))</code> Made by quoting a process from our telephone game</li>
+                <li><code>@&quot;Hello World&quot;</code> 通过引用基础术语"Hello World"来创建</li>
+                <li><code>@0</code> 最小的名称。通过引用最小的进程来创建。</li>
+                <li><code>@(@&quot;Alice&quot;!(&quot;I like rholang, pass it on.&quot;))</code> 通过引用来自传话筒游戏的进程来创建。</li>
             </ul>
-            <h2 id="so-what-is-all-about-">So What is <code>*</code> all about?</h2>
-            <p class="imgWrapper"><img src="/assets/myNameIs.png" alt="What kind of name is that!? Did your parents just name you after some computer code?"></p>
-            <p>We can package processes up to make names by quoting them with the <code>@</code> symbol. We can also turn names back into processes by &quot;unquoting&quot; them with the <code>*</code> symbol.</p>
-            <p>The big thing to remember is in rholang we <strong>send processes and receive names</strong>. That&#39;s important so I&#39;ll say it again. You always <strong>send a process</strong> and on the other end, you <strong>receive a name</strong>.</p>
-            <p>When Alice receives our message with <code>for(message &lt;- @&quot;Alice&quot;)</code> she is receiving, so <code>message</code> becomes a name. When she later sends to Bob she has to send a process, so she uses <code>*</code> to turn <code>message</code> back into a process with <code>@&quot;Bob&quot;!(*message)</code></p>
-            <h2 id="quiz">Quiz</h2>
-            <p>What do we send?</p>
+            <h2 id="so-what-is-all-about-">关于<code>*</code>的一切</h2>
+            <p class="imgWrapper"><img src="/assets/myNameIs.png"
+                                       alt="What kind of name is that!? Did your parents just name you after some computer code?">
+            </p>
+            <p>We can package processes up to make names by quoting them with the <code>@</code> symbol. We can also
+                turn names back into processes by &quot;unquoting&quot; them with the <code>*</code> symbol.</p>
+            <p>通过用<code>@</code>符号来引用它们，我们可以将进程打包以创建一些名称。我们也可以通过使用<code>*</code>符号来解引用，从而将名称转变为进程。</p>
+            <p>The big thing to remember is in rholang we <strong>send processes and receive names</strong>. That&#39;s
+                important so I&#39;ll say it again. You always <strong>send a process</strong> and on the other end, you
+                <strong>receive a name</strong>.</p>
+            <p>在rho语言中，我们需要记住的是<strong>发送进程和接收名称</strong>。这很重要，因此我再次强调。你总是<strong>发送一个进程</strong>，在另一端<strong>接收一个名称</strong></p>
+            <p>Aice通过<code>for(message &lt;- @&quot;Alice&quot;)</code>接收我们的消息，所以，
+                 <code>message</code> 变成了一个名称. 当她之后发送给Bob时，她不得不发送进程，所以她借助语句<code>@"Bob"!(*message)</code>使用<code>*</code>将<code>message</code>转变回一个进程。
+            </p>
+            <h2 id="quiz">小测验</h2>
+            <p>我们发送了什么？</p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz7" class="quiz"> processes</li>
-                <li><input value="incorrect"  type="radio" name="quiz7" class="quiz"> names</li>
+                <li><input value="correct" type="radio" name="quiz7" class="quiz"> 进程</li>
+                <li><input value="incorrect" type="radio" name="quiz7" class="quiz"> 名称</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz7Correct">Correct!</p>
-                <p class="incorrect" id="quiz7incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz7Correct">正确!</p>
+                <p class="incorrect" id="quiz7incorrect">错误. 请重试.</p>
             </div>
-            <p>What do we receive?</p>
+            <p>我们接收什么？</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz8" class="quiz"> processes</li>
-                <li><input value="correct"  type="radio" name="quiz8" class="quiz"> names</li>
+                <li><input value="incorrect" type="radio" name="quiz8" class="quiz"> 进程</li>
+                <li><input value="correct" type="radio" name="quiz8" class="quiz"> 名称</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz8Correct">Correct!</p>
-                <p class="incorrect" id="quiz8incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz8Correct">正确!</p>
+                <p class="incorrect" id="quiz8incorrect">错误. 请重试.</p>
             </div>
-            <p> What is <code>@&quot;registration&quot;</code></p>
+            <p> <code>@&quot;registration&quot;</code>是什么</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz9" class="quiz"> process</li>
-                <li><input value="correct"  type="radio" name="quiz9" class="quiz"> name</li>
-                <li><input value="incorrect" type="radio" name="quiz9" class="quiz"> invalid syntax</li>
+                <li><input value="incorrect" type="radio" name="quiz9" class="quiz"> 进程</li>
+                <li><input value="correct" type="radio" name="quiz9" class="quiz"> 名称</li>
+                <li><input value="incorrect" type="radio" name="quiz9" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz9Correct">Correct!</p>
-                <p class="incorrect" id="quiz9incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz9Correct">正确!</p>
+                <p class="incorrect" id="quiz9incorrect">错误. 请重试.</p>
             </div>
-            <p>What is <code>0</code>?</p>
+            <p><code>0</code>是什么?</p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz10" class="quiz"> process</li>
-                <li><input value="incorrect" type="radio" name="quiz10" class="quiz"> name</li>
-                <li><input value="incorrect" type="radio" name="quiz10" class="quiz"> invalid syntax</li>
+                <li><input value="correct" type="radio" name="quiz10" class="quiz"> 进程</li>
+                <li><input value="incorrect" type="radio" name="quiz10" class="quiz"> 名称</li>
+                <li><input value="incorrect" type="radio" name="quiz10" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz10Correct">Correct!</p>
-                <p class="incorrect" id="quiz10incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz10Correct">正确!</p>
+                <p class="incorrect" id="quiz10incorrect">错误. 请重试.</p>
             </div>
-            <p>What is <code>@0</code>?</p>
+            <p><code>@0</code>是什么?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz11" class="quiz"> process</li>
-                <li><input value="correct"  type="radio" name="quiz11" class="quiz"> name</li>
-                <li><input value="incorrect" type="radio" name="quiz11" class="quiz"> invalid syntax</li>
+                <li><input value="incorrect" type="radio" name="quiz11" class="quiz"> 进程</li>
+                <li><input value="correct" type="radio" name="quiz11" class="quiz"> 名称</li>
+                <li><input value="incorrect" type="radio" name="quiz11" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz11Correct">Correct!</p>
-                <p class="incorrect" id="quiz11incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz11Correct">正确!</p>
+                <p class="incorrect" id="quiz11incorrect">错误. 请重试.</p>
             </div>
-            <p>What is <code>@@0</code>?</p>
+            <p><code>@@0</code>是什么?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz12" class="quiz"> process</li>
-                <li><input value="incorrect" type="radio" name="quiz12" class="quiz"> name</li>
-                <li><input value="correct"  type="radio" name="quiz12" class="quiz"> invalid syntax</li>
+                <li><input value="incorrect" type="radio" name="quiz12" class="quiz"> 进程</li>
+                <li><input value="incorrect" type="radio" name="quiz12" class="quiz"> 名称</li>
+                <li><input value="correct" type="radio" name="quiz12" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz12Correct">Correct!</p>
-                <p class="incorrect" id="quiz12incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz12Correct">正确!</p>
+                <p class="incorrect" id="quiz12incorrect">错误. 请重试.</p>
             </div>
-            <p><code>*importantData</code> is a process, so what is <code>importantData</code>?</p>
+            <p><code>*importantData</code> 是一个进程，那么 <code>importantData</code>是什么?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz13" class="quiz"> process</li>
-                <li><input value="correct"  type="radio" name="quiz13" class="quiz"> name</li>
-                <li><input value="incorrect" type="radio" name="quiz13" class="quiz"> invalid syntax</li>
+                <li><input value="incorrect" type="radio" name="quiz13" class="quiz"> 进程</li>
+                <li><input value="correct" type="radio" name="quiz13" class="quiz"> 名称</li>
+                <li><input value="incorrect" type="radio" name="quiz13" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz13Correct">Correct!</p>
-                <p class="incorrect" id="quiz13incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz13Correct">正确!</p>
+                <p class="incorrect" id="quiz13incorrect">错误. 请重试.</p>
             </div>
-            <p> Which of these is equivalent to <code>&quot;BobsPhone&quot;</code>?</p>
+            <p> 下面哪一个与<code>&quot;BobsPhone&quot;</code>等价?</p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz14" class="quiz"> <code>*@&quot;BobsPhone&quot;</code></li>
-                <li><input value="incorrect" type="radio"  name="quiz14" class="quiz"> <code>@&quot;BobsPhone&quot;</code></li>
-                <li><input value="incorrect" type="radio"  name="quiz14" class="quiz"> <code>*&quot;BobsPhone&quot;</code></li>
-                <li><input value="incorrect" type="radio"  name="quiz14" class="quiz"> <code>@*BobsPhone</code></li>
-                <li><input value="incorrect" type="radio"  name="quiz14" class="quiz"> <code>stdout!(&quot;BobsPhone&quot;)</code></li>
+                <li><input value="correct" type="radio" name="quiz14" class="quiz"> <code>*@&quot;BobsPhone&quot;</code>
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz14" class="quiz">
+                    <code>@&quot;BobsPhone&quot;</code></li>
+                <li><input value="incorrect" type="radio" name="quiz14" class="quiz">
+                    <code>*&quot;BobsPhone&quot;</code></li>
+                <li><input value="incorrect" type="radio" name="quiz14" class="quiz"> <code>@*BobsPhone</code></li>
+                <li><input value="incorrect" type="radio" name="quiz14" class="quiz"> <code>stdout!(&quot;BobsPhone&quot;)</code>
+                </li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz14Correct">Correct!</p>
-                <p class="incorrect" id="quiz14incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz14Correct">正确!</p>
+                <p class="incorrect" id="quiz14incorrect">错误. 请重试.</p>
             </div>
-            <h3 id="exercise">Exercise</h3>
+            <h3 id="exercise">练习</h3>
             <p class="imgWrapper"><img src="/assets/telephoneFork.png" alt="This telephone game has a fork"></p>
-            <p>Instead of a linear telephone game where each player passes the message to the next, let&#39;s add a branch in the game. So now Bob will send to Charlie like before, but Bob will also send to Elise.</p>
-            <p>Each branch can be as long as you want, but at the end of each branch, print the message to stdout.</p>
+            <p>不像之前的线性传话游戏那样，每个玩家将信息传递给下一位，我么来为游戏添加一个分支。现在，Bob与先前一样将发送消息给Charlie，但同时也会发送给Elise。</p>
+            <p>每个分支的长度由你定，但在每个分支的最后都得将消息打印至标准输出。</p>
 
         </div>
 
@@ -382,11 +434,20 @@
         <div class="card" id="sendAndPeekSection">
             <h1 id="persistent-sends-and-peek">Persistent Sends and Peek</h1>
             <h2 id="why-send-repeatedly-">Why send repeatedly?</h2>
-            <p class="imgWrapper"><img src="/assets/broadcasting.png" alt="This radio navigation aid helps airplanes navigate by broadcasting the same message over and over"></p>
-            <p>Our pizza and coffee shops were both interested in receiving many messages on the same reusable channel. We accomplished that with a persistent for <code>for (msg &lt;= chan){...}</code> or a contract <code>contract chan(msg){...}</code>.</p>
-            <p>An air traffic control tower may be interested in doing just the opposite -- sending the same message over and over. The controllers in the tower want to record a message containing weather and active runway information once, and make it available for every pilot who needs it. Like the pizza shop, they are busy and can&#39;t be bothered to continually re-send the message every time a pilot consumes it.</p>
+            <p class="imgWrapper"><img src="/assets/broadcasting.png"
+                                       alt="This radio navigation aid helps airplanes navigate by broadcasting the same message over and over">
+            </p>
+            <p>Our pizza and coffee shops were both interested in receiving many messages on the same reusable channel.
+                We accomplished that with a persistent for <code>for (msg &lt;= chan){...}</code> or a contract <code>contract
+                    chan(msg){...}</code>.</p>
+            <p>An air traffic control tower may be interested in doing just the opposite -- sending the same message
+                over and over. The controllers in the tower want to record a message containing weather and active
+                runway information once, and make it available for every pilot who needs it. Like the pizza shop, they
+                are busy and can&#39;t be bothered to continually re-send the message every time a pilot consumes
+                it.</p>
             <h2 id="persistent-send-syntax">Persistent send syntax</h2>
-            <p>The control tower just needs a minor adjustment in their code to make the send persistent. Rather than sending with a single <code>!</code>, they will use a double <code>!!</code>.</p>
+            <p>The control tower just needs a minor adjustment in their code to make the send persistent. Rather than
+                sending with a single <code>!</code>, they will use a double <code>!!</code>.</p>
 
             <pre class="rholang-file">// ATC sends the info
 @"airportInfo"!!("No wind; Runway 11")
@@ -400,10 +461,11 @@ for (info &lt;- @"airportInfo") {
             <p>Confirm for yourself that the original send is still in the tuplespace.</p>
             <h3 id="exercise">Exercise</h3>
             <p>Modify the above code so that a second pilot also receives the information. Still, the send persists.</p>
-            <p>By the way, did you notice that we don&#39;t need <code>new stdout(...) in {}</code> when we don&#39;t actually use <code>stdout</code>.</p>
+            <p>By the way, did you notice that we don&#39;t need <code>new stdout(...) in {}</code> when we don&#39;t
+                actually use <code>stdout</code>.</p>
             <p>How many comms happen in <code>for (x &lt;- y) {0} | y!!(0)</code></p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz15" class="quiz"> <code>1</code></li>
+                <li><input value="correct" type="radio" name="quiz15" class="quiz"> <code>1</code></li>
                 <li><input value="incorrect" type="radio" name="quiz15" class="quiz"> <code>many</code></li>
                 <li><input value="incorrect" type="radio" name="quiz15" class="quiz"> <code>0</code></li>
             </ul>
@@ -412,7 +474,8 @@ for (info &lt;- @"airportInfo") {
                 <p class="incorrect" id="quiz15incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="double-checking-a-message">Double Checking a Message</h2>
-            <p>Persistent sends and receives are very useful as we just showed. But often normal sends and receives are perfectly good too. Imagine that I send my grandmother a letter, and she receives it.</p>
+            <p>Persistent sends and receives are very useful as we just showed. But often normal sends and receives are
+                perfectly good too. Imagine that I send my grandmother a letter, and she receives it.</p>
 
             <pre class="rholang-file">new grandma, stdout(`rho:io:stdout`) in {
   // I send the message
@@ -425,14 +488,16 @@ for (info &lt;- @"airportInfo") {
 }
 </pre>
 
-            <p>Now Imagine that I want to double check that I sent her the correct time. I could simply consume the message, but then it wouldn&#39;t be around for her to read anymore.</p>
+            <p>Now Imagine that I want to double check that I sent her the correct time. I could simply consume the
+                message, but then it wouldn&#39;t be around for her to read anymore.</p>
             <h3 id="exercise">Exercise</h3>
-            <p>Using what you already know, you can achieve this by consuming the message, checking it yourself, and then sending the same message back to the old channel.</p>
+            <p>Using what you already know, you can achieve this by consuming the message, checking it yourself, and
+                then sending the same message back to the old channel.</p>
             <p>Give that a try on your own first. The solution is listed below.</p>
             <p>How many comms happen in <code>for (x &lt;= y) {0} | y!!(0)</code></p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz16" class="quiz"> <code>1</code></li>
-                <li><input value="correct"  type="radio" name="quiz16" class="quiz"> <code>many</code></li>
+                <li><input value="correct" type="radio" name="quiz16" class="quiz"> <code>many</code></li>
                 <li><input value="incorrect" type="radio" name="quiz16" class="quiz"> <code>0</code></li>
             </ul>
             <div class="quizResponse">
@@ -462,8 +527,11 @@ for (info &lt;- @"airportInfo") {
 }
 </pre>
             <h2 id="peek-syntax">Peek Syntax</h2>
-            <p class="imgWrapper"><img src="/assets/letterPeak.png" alt="Maybe I&#39;ll just peak at Grandma&#39;s letter through the envelope."></p>
-            <p>Rholang will have a special syntax for this sort of thing eventually. It isn&#39;t available right now, but I&#39;ll show you the syntax just so you&#39;re ready. To &quot;peek&quot; at what&#39;s on a channel without consuming it, use the <span>&lt;!</span> operator.</p>
+            <p class="imgWrapper"><img src="/assets/letterPeak.png"
+                                       alt="Maybe I&#39;ll just peak at Grandma&#39;s letter through the envelope."></p>
+            <p>Rholang will have a special syntax for this sort of thing eventually. It isn&#39;t available right now,
+                but I&#39;ll show you the syntax just so you&#39;re ready. To &quot;peek&quot; at what&#39;s on a
+                channel without consuming it, use the <span>&lt;!</span> operator.</p>
 
             <pre class="rholang-file">// REMINDER: Peek is not yet implemented
 
@@ -482,12 +550,15 @@ for (msg &lt;- &commat;"grandma"){
 }
 </pre>
 
-            <p>If you&#39;ve ever written spreadsheet macros, or even used a spreadsheet. Accessing data without consuming it should be familiar. Think of it as</p>
+            <p>If you&#39;ve ever written spreadsheet macros, or even used a spreadsheet. Accessing data without
+                consuming it should be familiar. Think of it as</p>
             <p>Which syntax is used to peek at a message?</p>
             <ul class="quiz">
-                <li><input value="correct"   type="radio" name="quiz17" class="quiz"> <code>for (x &lt;! y){...}</code></li>
-                <li><input value="incorrect"  type="radio" name="quiz17" class="quiz"> <code>for (x &lt;= y){...}</code></li>
-                <li><input value="incorrect"  type="radio" name="quiz17" class="quiz"> <code>x!!(y)</code></li>
+                <li><input value="correct" type="radio" name="quiz17" class="quiz"> <code>for (x &lt;! y){...}</code>
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz17" class="quiz"> <code>for (x &lt;= y){...}</code>
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz17" class="quiz"> <code>x!!(y)</code></li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz17Correct">Correct!</p>
@@ -495,7 +566,7 @@ for (msg &lt;- &commat;"grandma"){
             </div>
             <p>How many comms happen in <code>for (x &lt;! y) {0} | y!!(0)</code></p>
             <ul class="quiz">
-                <li><input value="correct"   type="radio" name="quiz18" class="quiz"> <code>1</code></li>
+                <li><input value="correct" type="radio" name="quiz18" class="quiz"> <code>1</code></li>
                 <li><input value="incorrect" type="radio" name="quiz18" class="quiz"> <code>many</code></li>
                 <li><input value="incorrect" type="radio" name="quiz18" class="quiz"> <code>0</code></li>
             </ul>
@@ -509,18 +580,29 @@ for (msg &lt;- &commat;"grandma"){
         <div class="card" id="joinOperatorSection">
             <h1 id="join-operator">Join Operator</h1>
             <h2 id="multiple-data-sources">Multiple data sources</h2>
-            <p class="imgWrapper"><img src="/assets/pushups.png" alt="In general, the winner of this pushup competition can&#39;t be determined until both participants are finished."></p>
-            <p>Occasionally a computation can only be made once data is retrieved (messages are received) from two or more different data sources. For example, you can&#39;t tell whether you won the lottery until you&#39;ve got your ticket number and the winning number. You can&#39;t make change for a purchase until you know the price and the amount tendered. You can&#39;t tell who wins a pushup contest until you know mow many pushups each competitor completed.</p>
-            <p>Rholang has the join operator for exactly this situation. To perform a join, just use the <code>;</code> character.</p>
+            <p class="imgWrapper"><img src="/assets/pushups.png"
+                                       alt="In general, the winner of this pushup competition can&#39;t be determined until both participants are finished.">
+            </p>
+            <p>Occasionally a computation can only be made once data is retrieved (messages are received) from two or
+                more different data sources. For example, you can&#39;t tell whether you won the lottery until you&#39;ve
+                got your ticket number and the winning number. You can&#39;t make change for a purchase until you know
+                the price and the amount tendered. You can&#39;t tell who wins a pushup contest until you know mow many
+                pushups each competitor completed.</p>
+            <p>Rholang has the join operator for exactly this situation. To perform a join, just use the <code>;</code>
+                character.</p>
             <pre class="inline-code">for (p1Pushups &lt;- @"player1"; p2Pushups &lt;- @"player2") {
   @"stdout"!("The winner is...")
 }</pre>
             <h2 id="rocket-launch">Rocket Launch</h2>
-            <p>A space exploration company wants to make sure their rocket only launches when both of two flight engineers, Alice and Bob, give the launch command. As an example, Bob would give the go ahead by sending <code>BobLaunch!(&quot;launch&quot;)</code>. When both engineers give the command, the rocket can be launched.</p>
+            <p>A space exploration company wants to make sure their rocket only launches when both of two flight
+                engineers, Alice and Bob, give the launch command. As an example, Bob would give the go ahead by sending
+                <code>BobLaunch!(&quot;launch&quot;)</code>. When both engineers give the command, the rocket can be
+                launched.</p>
             <h3 id="exercise">Exercise</h3>
             <p>Consider how this code might be written using the join operator that we just learned discussed.</p>
             <h2 id="the-wrong-way">The wrong way</h2>
-            <p>One may have been tempted to solve the rocket problem by first receiving one launch command then the other.</p>
+            <p>One may have been tempted to solve the rocket problem by first receiving one launch command then the
+                other.</p>
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
   // Listen for Alice's then Bob's launch commands
   for (x &lt;- @"AliceLaunch"){
@@ -535,9 +617,14 @@ for (msg &lt;- &commat;"grandma"){
   @"BobLaunch"!("launch")
 }
 </pre>
-            <p>The problem here is when Alice okay&#39;s the launch, but Bob hasn&#39;t yet. Alice should be able to change her mind, but she cannot. Imagine if she suddenly noticed a problem with the rocket, or received some bad news and wanted to abort the launch.</p>
-            <p class="imgWrapper"><img src="/assets/join.png" alt="No use in grabbing just one set of mail. Might as well wait until the second set"></p>
-            <p>When using a join, she can still change her mind because the <code>for</code> won&#39;t consume her launch message until Bob&#39;s message also appears and is ready to be consumed.</p>
+            <p>The problem here is when Alice okay&#39;s the launch, but Bob hasn&#39;t yet. Alice should be able to
+                change her mind, but she cannot. Imagine if she suddenly noticed a problem with the rocket, or received
+                some bad news and wanted to abort the launch.</p>
+            <p class="imgWrapper"><img src="/assets/join.png"
+                                       alt="No use in grabbing just one set of mail. Might as well wait until the second set">
+            </p>
+            <p>When using a join, she can still change her mind because the <code>for</code> won&#39;t consume her
+                launch message until Bob&#39;s message also appears and is ready to be consumed.</p>
             <h2 id="launch-solution">Launch Solution</h2>
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
   // Listen for both launch commands
@@ -553,23 +640,29 @@ for (msg &lt;- &commat;"grandma"){
 </pre>
             <p>What code would Alice need to &quot;par in&quot; to retract her launch command.</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz19" class="quiz"> <code>@&quot;AliceCancel&quot;!(&quot;cancelZ&quot;)</code></li>
-                <li><input value="incorrect" type="radio" name="quiz19" class="quiz"> <code>@&quot;AliceLaunch&quot;!(&quot;cancel&quot;)</code></li>
-                <li><input value="correct"  type="radio" name="quiz19" class="quiz"> <code>for (x &lt;- @&quot;AliceLaunch&quot;){0}</code></li>
+                <li><input value="incorrect" type="radio" name="quiz19" class="quiz"> <code>@&quot;AliceCancel&quot;!(&quot;cancelZ&quot;)</code>
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz19" class="quiz"> <code>@&quot;AliceLaunch&quot;!(&quot;cancel&quot;)</code>
+                </li>
+                <li><input value="correct" type="radio" name="quiz19" class="quiz"> <code>for (x &lt;- @&quot;AliceLaunch&quot;){0}</code>
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz19Correct">Correct!</p>
                 <p class="incorrect" id="quiz19incorrect">Incorrect. Please try again.</p>
             </div>
-            <p>The concept of joins is framed as the dining philosophers problem, and <a href="https://developer.rchain.coop/tutorial/#dining-philosophers-and-deadlock&quot;]">(explored further)</a> in the concise rholang tutorial.</p>
+            <p>The concept of joins is framed as the dining philosophers problem, and <a
+                    href="https://developer.rchain.coop/tutorial/#dining-philosophers-and-deadlock&quot;]">(explored
+                further)</a> in the concise rholang tutorial.</p>
             <p>In <code>for (x &lt;- y; a &lt;- b){ 0 }</code>, which channel must be sent on first?</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz20" class="quiz"> y</li>
                 <li><input value="incorrect" type="radio" name="quiz20" class="quiz"> b</li>
-                <li><input value="correct"  type="radio" name="quiz20" class="quiz"> doesn&#39;t matter</li>
-                <li><input value="incorrect" type="radio" name="quiz20" class="quiz"> they must be sent simultaneously</li>
+                <li><input value="correct" type="radio" name="quiz20" class="quiz"> doesn&#39;t matter</li>
+                <li><input value="incorrect" type="radio" name="quiz20" class="quiz"> they must be sent simultaneously
+                </li>
             </ul>
-             <div class="quizResponse">
+            <div class="quizResponse">
                 <p class="correct" id="quiz20Correct">Correct!</p>
                 <p class="incorrect" id="quiz20incorrect">Incorrect. Please try again.</p>
             </div>
@@ -578,17 +671,21 @@ for (msg &lt;- &commat;"grandma"){
                 <li><input value="incorrect" type="radio" name="quiz21" class="quiz"> x</li>
                 <li><input value="incorrect" type="radio" name="quiz21" class="quiz"> a</li>
                 <li><input value="incorrect" type="radio" name="quiz21" class="quiz"> doesn&#39;t matter</li>
-                <li><input value="correct"  type="radio" name="quiz21" class="quiz"> they will be consumed simultaneously</li>
+                <li><input value="correct" type="radio" name="quiz21" class="quiz"> they will be consumed simultaneously
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz21Correct">Correct!</p>
                 <p class="incorrect" id="quiz21incorrect">Incorrect. Please try again.</p>
             </div>
             <h3 id="exercise">Exercise</h3>
-            <p>There is a game where two players will each send a message on separate channels. Whoever sends the first message, loses, and whoever sends the second message wins. Your task here is to write the game code that will tell which player won. To play the game, players should send messages like shown.</p>
+            <p>There is a game where two players will each send a message on separate channels. Whoever sends the first
+                message, loses, and whoever sends the second message wins. Your task here is to write the game code that
+                will tell which player won. To play the game, players should send messages like shown.</p>
             <p><code>P1!(&quot;Send any message&quot;)</code>
                 <code>P2!(&quot;Hope I win&quot;)</code></p>
-            <p>Solution to the patience game In this case we actually don&#39;t want to use join because we care which player went first. Hope I didn&#39;t trick you ;)</p>
+            <p>Solution to the patience game In this case we actually don&#39;t want to use join because we care which
+                player went first. Hope I didn&#39;t trick you ;)</p>
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
   // Use the rnode repl to test your code
   // Send messages like in both orders
@@ -610,7 +707,9 @@ for (msg &lt;- &commat;"grandma"){
   }
 }
 </pre>
-            <p>Like the comment says, you should send the messages in both orders to make sure of who wins. The easiest way to do that right now is probably in the REPL. Another option is to have one player signal the other for when to go as shown below. We&#39;ll explore this concept further in the next unit.</p>
+            <p>Like the comment says, you should send the messages in both orders to make sure of who wins. The easiest
+                way to do that right now is probably in the REPL. Another option is to have one player signal the other
+                for when to go as shown below. We&#39;ll explore this concept further in the next unit.</p>
             <pre class="rholang-file">new P1, P2, signal in {
   // P1 sends their message then signals P2 who is waiting
   P1!("Send any message")
@@ -625,9 +724,15 @@ for (msg &lt;- &commat;"grandma"){
 </pre>
             <p>Why is it possible for nobody to win the patience game as we wrote it above?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz22" class="quiz"> Because both players could send messages at the same time</li>
-                <li><input value="incorrect" type="radio" name="quiz22" class="quiz"> The players are sending on the wrong channels</li>
-                <li><input value="correct"  type="radio" name="quiz22" class="quiz"> The first block receives P2 while the second receives P1, so neither ever finishes</li>
+                <li><input value="incorrect" type="radio" name="quiz22" class="quiz"> Because both players could send
+                    messages at the same time
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz22" class="quiz"> The players are sending on the
+                    wrong channels
+                </li>
+                <li><input value="correct" type="radio" name="quiz22" class="quiz"> The first block receives P2 while
+                    the second receives P1, so neither ever finishes
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz22Correct">Correct!</p>
@@ -638,21 +743,33 @@ for (msg &lt;- &commat;"grandma"){
         <div class="card" id="unforgeableSection">
             <h1 id="unforgeable-names-and-acks">Unforgeable Names and Acks</h1>
             <h2 id="making-channels-private">Making Channels &quot;Private&quot;</h2>
-            <p class="imgWrapper"><img src="/assets/stealing.png" alt="A competing pizza shop steals orders because the channel isn&#39;t secure."></p>
-            <p>So far every channel we&#39;ve sent on has been a public name like <code>@&quot;pizzaShop&quot;</code>. Anyone can send a message to this channel (which is good for business) but anyone can receive a message on it too (which is terrible for business). Imagine if competitors could consume pizza orders so that the pizza shop never received them.</p>
+            <p class="imgWrapper"><img src="/assets/stealing.png"
+                                       alt="A competing pizza shop steals orders because the channel isn&#39;t secure.">
+            </p>
+            <p>So far every channel we&#39;ve sent on has been a public name like <code>@&quot;pizzaShop&quot;</code>.
+                Anyone can send a message to this channel (which is good for business) but anyone can receive a message
+                on it too (which is terrible for business). Imagine if competitors could consume pizza orders so that
+                the pizza shop never received them.</p>
             <p>What code would a bad pizza shop have to write to intercept orders?`</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz23" class="quiz">contract evilPizzaShop(interceptedMessage) = {0}</li>
-                <li><input value="incorrect" type="radio" name="quiz23" class="quiz"> <code>@&quot;evilPizzaShop&quot;!(&quot;pizzaShop&quot;)</code></li>
-                <li><input value="incorrect" type="radio" name="quiz23" class="quiz"> <code>@&quot;pizzaShop&quot;!(&quot;intercept&quot;)</code></li>
-                <li><input value="correct"  type="radio"name="quiz23" class="quiz"> <code>for (interceptedMessage &amp;lt;- @&quot;pizzaShop&quot;){...}</code></li>
+                <li><input value="incorrect" type="radio" name="quiz23" class="quiz">contract
+                    evilPizzaShop(interceptedMessage) = {0}
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz23" class="quiz"> <code>@&quot;evilPizzaShop&quot;!(&quot;pizzaShop&quot;)</code>
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz23" class="quiz"> <code>@&quot;pizzaShop&quot;!(&quot;intercept&quot;)</code>
+                </li>
+                <li><input value="correct" type="radio" name="quiz23" class="quiz"> <code>for (interceptedMessage &amp;lt;-
+                    @&quot;pizzaShop&quot;){...}</code></li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz23Correct">Correct!</p>
                 <p class="incorrect" id="quiz23incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="bound-and-free-names">Bound and Free Names</h2>
-            <p>We learned how to receive messages with <code>for</code> and <code>contract</code> last time. Both of these constructs &quot;bind&quot; names. For example, order is a bound name within the coffee shop code.</p>
+            <p>We learned how to receive messages with <code>for</code> and <code>contract</code> last time. Both of
+                these constructs &quot;bind&quot; names. For example, order is a bound name within the coffee shop code.
+            </p>
             <pre class="rholang-file">for (order &lt;= @"coffeeShop") {
   @"stdout"!("Coffee Order Received")
 }
@@ -662,11 +779,14 @@ for (msg &lt;- &commat;"grandma"){
   @"stdout"!("Coffee Order Received")
 }
 </pre>
-            <p>A name is considered bound if it only exists inside a specific process and can&#39;t be accessed from outside. So the name order is bound in the coffee code. On the other hand, any name that can be accessed from elsewhere is a &quot;free&quot; name. <code>@&quot;coffeeShop&quot;</code> is a free name in the above examples.</p>
+            <p>A name is considered bound if it only exists inside a specific process and can&#39;t be accessed from
+                outside. So the name order is bound in the coffee code. On the other hand, any name that can be accessed
+                from elsewhere is a &quot;free&quot; name. <code>@&quot;coffeeShop&quot;</code> is a free name in the
+                above examples.</p>
             <p>State whether <code>x</code> is bound or free in each of the following code snippets.</p>
             <p><code>for (x &amp;lt;- y){0}</code></p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz24" class="quiz"> Bound</li>
+                <li><input value="correct" type="radio" name="quiz24" class="quiz"> Bound</li>
                 <li><input value="incorrect" type="radio" name="quiz24" class="quiz"> Free</li>
                 <li><input value="incorrect" type="radio" name="quiz24" class="quiz"> Neither</li>
             </ul>
@@ -677,7 +797,7 @@ for (msg &lt;- &commat;"grandma"){
             <p><code>for (y &amp;lt;- x){0}</code></p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz25" class="quiz"> Bound</li>
-                <li><input value="correct"  type="radio" name="quiz25" class="quiz"> Free</li>
+                <li><input value="correct" type="radio" name="quiz25" class="quiz"> Free</li>
                 <li><input value="incorrect" type="radio" name="quiz25" class="quiz"> Neither</li>
             </ul>
             <div class="quizResponse">
@@ -686,7 +806,7 @@ for (msg &lt;- &commat;"grandma"){
             </div>
             <p><code>new x in { x!(true) }</code></p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz26" class="quiz"> Bound</li>
+                <li><input value="correct" type="radio" name="quiz26" class="quiz"> Bound</li>
                 <li><input value="incorrect" type="radio" name="quiz26" class="quiz"> Free</li>
                 <li><input value="incorrect" type="radio" name="quiz26" class="quiz"> Neither</li>
             </ul>
@@ -697,7 +817,7 @@ for (msg &lt;- &commat;"grandma"){
             <p><code>contract x(y) = { 0 }</code></p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz27" class="quiz"> Bound</li>
-                <li><input value="correct"  type="radio" name="quiz27" class="quiz"> Free</li>
+                <li><input value="correct" type="radio" name="quiz27" class="quiz"> Free</li>
                 <li><input value="incorrect" type="radio" name="quiz27" class="quiz"> Neither</li>
             </ul>
             <div class="quizResponse">
@@ -706,9 +826,9 @@ for (msg &lt;- &commat;"grandma"){
             </div>
             <p><code>contract y(x) = { 0 }</code></p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz28" class="quiz"> Bound</li>
-                <li><input value="incorrect" type="radio"  name="quiz28" class="quiz"> Free</li>
-                <li><input value="incorrect" type="radio"  name="quiz28" class="quiz"> Neither</li>
+                <li><input value="correct" type="radio" name="quiz28" class="quiz"> Bound</li>
+                <li><input value="incorrect" type="radio" name="quiz28" class="quiz"> Free</li>
+                <li><input value="incorrect" type="radio" name="quiz28" class="quiz"> Neither</li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz28Correct">Correct!</p>
@@ -716,16 +836,18 @@ for (msg &lt;- &commat;"grandma"){
             </div>
             <p><code>for (y &amp;lt;- @&quot;x&quot;){0}</code></p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio"  name="quiz29" class="quiz"> Bound</li>
+                <li><input value="incorrect" type="radio" name="quiz29" class="quiz"> Bound</li>
                 <li><input value="incorrect" type="radio" name="quiz29" class="quiz"> Free</li>
-                <li><input value="correct"  type="radio" name="quiz29" class="quiz"> Neither</li>
+                <li><input value="correct" type="radio" name="quiz29" class="quiz"> Neither</li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz29Correct">Correct!</p>
                 <p class="incorrect" id="quiz29incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="the-new-operator">The <code>new</code> Operator</h2>
-            <p><code>for</code> and <code>contract</code> are perfect for binding names inside of continuations. But what if we want to create a bound name to send messages on? For example, our pizza shop would prefer not to have its orders intercepted. We solve this with the <code>new</code> operator.</p>
+            <p><code>for</code> and <code>contract</code> are perfect for binding names inside of continuations. But
+                what if we want to create a bound name to send messages on? For example, our pizza shop would prefer not
+                to have its orders intercepted. We solve this with the <code>new</code> operator.</p>
             <pre class="rholang-file">new pizzaShop, stdout(`rho:io:stdout`) in {
 
   // Same contract as before
@@ -741,47 +863,79 @@ for (msg &lt;- &commat;"grandma"){
 
 // But we can't order from here, because pizzaShop doesn't exist
 </pre>
-            <p>First notice that <code>pizzaShop</code> is a name even though it doesn&#39;t start with <code>@</code>. That&#39;s because the <code>new</code> operator created it as a name directly rather than by quoting some written-down process. Whenever you create a <code>new</code> name, it is always a bound name.</p>
-            <p>Second, notice that while this technique does prevent other pizza shops from consuming orders, it also prevents new customers from ordering. We&#39;ll solve this problem in the lesson on bundles.</p>
+            <p>First notice that <code>pizzaShop</code> is a name even though it doesn&#39;t start with <code>@</code>.
+                That&#39;s because the <code>new</code> operator created it as a name directly rather than by quoting
+                some written-down process. Whenever you create a <code>new</code> name, it is always a bound name.</p>
+            <p>Second, notice that while this technique does prevent other pizza shops from consuming orders, it also
+                prevents new customers from ordering. We&#39;ll solve this problem in the lesson on bundles.</p>
             <p>What happens when you try to order a pizza fron outside of the <code>new</code> restriction.</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz30" class="quiz"> The order works fine</li>
-                <li><input value="incorrect" type="radio" name="quiz30" class="quiz"> The order works but takes much longer</li>
-                <li><input value="correct"  type="radio" name="quiz30" class="quiz"> Error about top-level free variables</li>
-                <li><input value="incorrect" type="radio" name="quiz30" class="quiz"> The code runs, but no order is received</li>
+                <li><input value="incorrect" type="radio" name="quiz30" class="quiz"> The order works but takes much
+                    longer
+                </li>
+                <li><input value="correct" type="radio" name="quiz30" class="quiz"> Error about top-level free variables
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz30" class="quiz"> The code runs, but no order is
+                    received
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz30Correct">Correct!</p>
                 <p class="incorrect" id="quiz30incorrect">Incorrect. Please try again.</p>
             </div>
-            <p>We learned that all names quote processes. So what process does the <code>pizzaShop</code> name quote? Try printing the process to <code>stdout</code> to see</p>
+            <p>We learned that all names quote processes. So what process does the <code>pizzaShop</code> name quote?
+                Try printing the process to <code>stdout</code> to see</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz31" class="quiz"> It quotes &quot;pizzaShop&quot;</li>
+                <li><input value="incorrect" type="radio" name="quiz31" class="quiz"> It quotes &quot;pizzaShop&quot;
+                </li>
                 <li><input value="incorrect" type="radio" name="quiz31" class="quiz"> It doesn&#39;t quote anything</li>
-                <li><input value="correct"  type="radio" name="quiz31" class="quiz"> &quot;Some Unforgeable hex code&quot;</li>
+                <li><input value="correct" type="radio" name="quiz31" class="quiz"> &quot;Some Unforgeable hex code&quot;
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz31Correct">Correct!</p>
                 <p class="incorrect" id="quiz31incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="private-vs-unforgeable">Private vs Unforgeable</h2>
-            <p class="imgWrapper"><img src="/assets/eavesdropping.png" alt="Although the messages can no longer be stolen, they can still be eavesdropped on. You&#39;ve been warned."></p>
-            <p><code>new</code> is known as the restriction operator because it restricts use of the bound names that it creates to within it curly braces or &quot;lexical scope&quot;. Within the world of the rholang these new names really are only visible within the correct scope, but remember that human programmers can look in to that world from the outside. That is especially true when working in a blockchain context.</p>
-            <p>So while a competing pizza shop can no longer <em>consume</em> pizza orders intended for our shop, they can still read the orders with a block explorer. Occasionally programmers call <code>new</code> names &quot;private&quot;, but a better term is &quot;unforgeable&quot;, which explains the answer to the previous question.</p>
-            <p>We&#39;ve previously used <code>new</code> to prevent tuplespace pollution. Why did using unforgeable names prevent us from having to clear the tuplespace after each contract run?</p>
+            <p class="imgWrapper"><img src="/assets/eavesdropping.png"
+                                       alt="Although the messages can no longer be stolen, they can still be eavesdropped on. You&#39;ve been warned.">
+            </p>
+            <p><code>new</code> is known as the restriction operator because it restricts use of the bound names that it
+                creates to within it curly braces or &quot;lexical scope&quot;. Within the world of the rholang these
+                new names really are only visible within the correct scope, but remember that human programmers can look
+                in to that world from the outside. That is especially true when working in a blockchain context.</p>
+            <p>So while a competing pizza shop can no longer <em>consume</em> pizza orders intended for our shop, they
+                can still read the orders with a block explorer. Occasionally programmers call <code>new</code> names
+                &quot;private&quot;, but a better term is &quot;unforgeable&quot;, which explains the answer to the
+                previous question.</p>
+            <p>We&#39;ve previously used <code>new</code> to prevent tuplespace pollution. Why did using unforgeable
+                names prevent us from having to clear the tuplespace after each contract run?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz32" class="quiz"> Because <code>new</code> makes free names</li>
-                <li><input value="correct"  type="radio" name="quiz32" class="quiz"> Because <code>new</code> creates unforgeable names that can&#39;t be accessed by outside code</li>
-                <li><input value="incorrect" type="radio" name="quiz32" class="quiz"> Because <code>new</code> automatically clears the tuplespace</li>
+                <li><input value="incorrect" type="radio" name="quiz32" class="quiz"> Because <code>new</code> makes
+                    free names
+                </li>
+                <li><input value="correct" type="radio" name="quiz32" class="quiz"> Because <code>new</code> creates
+                    unforgeable names that can&#39;t be accessed by outside code
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz32" class="quiz"> Because <code>new</code>
+                    automatically clears the tuplespace
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz32Correct">Correct!</p>
                 <p class="incorrect" id="quiz32incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="acknowledgement-channels">Acknowledgement Channels</h2>
-            <p class="imgWrapper"><img src="/assets/roger.png" alt="We acknowledge communications all the time in conversations"></p>
-            <p>One common use of unforgeable names is &quot;acknowledgement channels&quot;, usually called &quot;ack&quot; channels for short. Instead of confirming orders by printing to the screen and disturbing <em>everyone</em>, the pizza shop should really just let the <em>customer</em> know that the order has been placed.</p>
-            <p>To do that the pizza shop needs to know how to contact the customer. So the customer should supply an acknowledgement channel to be called back on. Traditionally such a channel is named <code>ack</code>.</p>
+            <p class="imgWrapper"><img src="/assets/roger.png"
+                                       alt="We acknowledge communications all the time in conversations"></p>
+            <p>One common use of unforgeable names is &quot;acknowledgement channels&quot;, usually called &quot;ack&quot;
+                channels for short. Instead of confirming orders by printing to the screen and disturbing
+                <em>everyone</em>, the pizza shop should really just let the <em>customer</em> know that the order has
+                been placed.</p>
+            <p>To do that the pizza shop needs to know how to contact the customer. So the customer should supply an
+                acknowledgement channel to be called back on. Traditionally such a channel is named <code>ack</code>.
+            </p>
             <pre class="rholang-file">new pizzaShop in {
 
   // Now we take an order and an ack channel
@@ -799,17 +953,25 @@ for (msg &lt;- &commat;"grandma"){
             <p>Why don&#39;t the acknowledgements in the previous example show up on the screen?</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz33" class="quiz"> There is a bug in the code</li>
-                <li><input value="incorrect" type="radio" name="quiz33" class="quiz"> The orders were not received correctly</li>
-                <li><input value="correct"  type="radio" name="quiz33" class="quiz"> The confirmation was not sent to <code>stdout</code></li>
+                <li><input value="incorrect" type="radio" name="quiz33" class="quiz"> The orders were not received
+                    correctly
+                </li>
+                <li><input value="correct" type="radio" name="quiz33" class="quiz"> The confirmation was not sent to
+                    <code>stdout</code></li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz33Correct">Correct!</p>
                 <p class="incorrect" id="quiz33incorrect">Incorrect. Please try again.</p>
             </div>
             <h3 id="exercise">Exercise</h3>
-            <p>The previous example causes tuplespace pollution on the channels <code>@&quot;Alice&quot;</code> and <code>@&quot;Bob&quot;</code>. Fix it so that Alice and Bob both have unforgeable names.</p>
+            <p>The previous example causes tuplespace pollution on the channels <code>@&quot;Alice&quot;</code> and
+                <code>@&quot;Bob&quot;</code>. Fix it so that Alice and Bob both have unforgeable names.</p>
             <h2 id="sending-names-gives-permission">Sending Names Gives Permission</h2>
-            <p>We just saw how the customer can give the shop an ack channel to receive order confirmation. It turns out we can do even better. With our previous code, anyone could contact the customer on the ack channel. That means anyone could send a forged ack making the customer think the order was placed when really it wasn&#39;t. Really Alice and Bob should keep their unforgeable names under tight control. Because giving someone that name gives them the capability to contact you.</p>
+            <p>We just saw how the customer can give the shop an ack channel to receive order confirmation. It turns out
+                we can do even better. With our previous code, anyone could contact the customer on the ack channel.
+                That means anyone could send a forged ack making the customer think the order was placed when really it
+                wasn&#39;t. Really Alice and Bob should keep their unforgeable names under tight control. Because giving
+                someone that name gives them the capability to contact you.</p>
             <pre class="rholang-file">new pizzaShop in {
 
   // Take orders and acknowledge them
@@ -823,20 +985,33 @@ for (msg &lt;- &commat;"grandma"){
   }
 }
 </pre>
-            <p>The solution is to create a new unforgeable name, and give it to the pizza shop so that only they can call you back. Even though the pizza shop is <em>outside</em> of the <code>new alice</code>, it can still send on the channel because alice gave it the channels name. This is a wonderful way to delegate priveledges.</p>
-            <p>In this example we trust the shop to only <em>send</em> on the ack channel, but notice that it could also receive if it wanted to. We&#39;ll learn how to give out only some of those permissions in the next lesson on bundles.</p>
-            <p>Bob also wants to order a pizza and give a unforgeable ack channel. Where should he create his unforgeable channel?</p>
+            <p>The solution is to create a new unforgeable name, and give it to the pizza shop so that only they can
+                call you back. Even though the pizza shop is <em>outside</em> of the <code>new alice</code>, it can
+                still send on the channel because alice gave it the channels name. This is a wonderful way to delegate
+                priveledges.</p>
+            <p>In this example we trust the shop to only <em>send</em> on the ack channel, but notice that it could also
+                receive if it wanted to. We&#39;ll learn how to give out only some of those permissions in the next
+                lesson on bundles.</p>
+            <p>Bob also wants to order a pizza and give a unforgeable ack channel. Where should he create his
+                unforgeable channel?</p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz34" class="quiz"> On his own line, after the alice code</li>
-                <li><input value="incorrect" type="radio" name="quiz34" class="quiz"> On the same line the Alice did</li>
-                <li><input value="incorrect" type="radio" name="quiz34" class="quiz"> On the very first l ine of the program</li>
+                <li><input value="correct" type="radio" name="quiz34" class="quiz"> On his own line, after the alice
+                    code
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz34" class="quiz"> On the same line the Alice did
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz34" class="quiz"> On the very first l ine of the
+                    program
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz34Correct">Correct!</p>
                 <p class="incorrect" id="quiz34incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="stdoutack-and-stderrack"><code>stdoutAck</code> and <code>stderrAck</code></h2>
-            <p>Now that you understand ack channels, you should know about two other ways to print to the screen. They are channels called <code>stdoutAck</code> and <code>stderrAck</code>. They work just like their cousins from lesson 1, but they take an ack channel.</p>
+            <p>Now that you understand ack channels, you should know about two other ways to print to the screen. They
+                are channels called <code>stdoutAck</code> and <code>stderrAck</code>. They work just like their cousins
+                from lesson 1, but they take an ack channel.</p>
             <pre class="rholang-file">new myAckChannel,
     stdout(`rho:io:stdout`),
     stdoutAck(`rho:io:stdoutAck`) in {
@@ -848,21 +1023,28 @@ for (msg &lt;- &commat;"grandma"){
   }
 }
 </pre>
-            <p>By the way, did you ever notice the handful of stuff that always starts in a fresh tuplespace? Four of those things are the built-in receives for the screen-printing channels. The others are for cryptography. We&#39;ll discuss them later.</p>
+            <p>By the way, did you ever notice the handful of stuff that always starts in a fresh tuplespace? Four of
+                those things are the built-in receives for the screen-printing channels. The others are for
+                cryptography. We&#39;ll discuss them later.</p>
             <h3 id="exercise">Exercise</h3>
-            <p><code>stdout!(&quot;1&quot;)|stdout!(&quot;2&quot;)|stdout!(&quot;3&quot;)</code> Notice that this program does not print the numbers in any particular order. The calls happen concurrently. Imagine we really need these lines to print in order. Modify the code to use ack channels and ensure that the numbers get printed in order.</p>
+            <p><code>stdout!(&quot;1&quot;)|stdout!(&quot;2&quot;)|stdout!(&quot;3&quot;)</code> Notice that this
+                program does not print the numbers in any particular order. The calls happen concurrently. Imagine we
+                really need these lines to print in order. Modify the code to use ack channels and ensure that the
+                numbers get printed in order.</p>
             <h3 id="exercise">Exercise</h3>
-            <p>Predict how this program will run (what it outputs and how it reduces in the tuplespace). Then run it to test your prediction.
+            <p>Predict how this program will run (what it outputs and how it reduces in the tuplespace). Then run it to
+                test your prediction.
                 <code>new myChan in {
-  myChan!(&quot;Hi There&quot;)
-}
-|
-for (msg &amp;lt;- myChan) {stdout!(*msg)}</code></p>
-            <p>If your prediction for the previous exercise was wrong, modify the program so it actually does what you predicted it would.</p>
+                    myChan!(&quot;Hi There&quot;)
+                    }
+                    |
+                    for (msg &amp;lt;- myChan) {stdout!(*msg)}</code></p>
+            <p>If your prediction for the previous exercise was wrong, modify the program so it actually does what you
+                predicted it would.</p>
             <h2 id="quiz">Quiz</h2>
             <p>Which name is bound in <code>for(x &amp;lt;- y){0}</code></p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz35" class="quiz"> <code>x</code></li>
+                <li><input value="correct" type="radio" name="quiz35" class="quiz"> <code>x</code></li>
                 <li><input value="incorrect" type="radio" name="quiz35" class="quiz"> <code>y</code></li>
                 <li><input value="incorrect" type="radio" name="quiz35" class="quiz"> <code>0</code></li>
             </ul>
@@ -872,7 +1054,7 @@ for (msg &amp;lt;- myChan) {stdout!(*msg)}</code></p>
             </div>
             <p>Which name is bound in <code>new x in {0}</code></p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz36" class="quiz"> <code>x</code></li>
+                <li><input value="correct" type="radio" name="quiz36" class="quiz"> <code>x</code></li>
                 <li><input value="incorrect" type="radio" name="quiz36" class="quiz"> <code>y</code></li>
                 <li><input value="incorrect" type="radio" name="quiz36" class="quiz"> <code>0</code></li>
             </ul>
@@ -884,17 +1066,24 @@ for (msg &amp;lt;- myChan) {stdout!(*msg)}</code></p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz37" class="quiz"> A name</li>
                 <li><input value="incorrect" type="radio" name="quiz37" class="quiz"> A process</li>
-                <li><input value="correct"  type="radio" name="quiz37" class="quiz"> Invalid syntax</li>
+                <li><input value="correct" type="radio" name="quiz37" class="quiz"> Invalid syntax</li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz37Correct">Correct!</p>
                 <p class="incorrect" id="quiz37incorrect">Incorrect. Please try again.</p>
             </div>
-            <p>Why did the pizzaShopAck code send <code>&quot;bob&quot;</code> as an ack channel instead of <code>@&quot;bob&quot;</code>?</p>
+            <p>Why did the pizzaShopAck code send <code>&quot;bob&quot;</code> as an ack channel instead of <code>@&quot;bob&quot;</code>?
+            </p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz38" class="quiz"> No reason; it&#39;s just a style choice.</li>
-                <li><input value="correct"  type="radio" name="quiz38" class="quiz"> Because @&quot;bob&quot; is a name, but we have to send processes.</li>
-                <li><input value="incorrect" type="radio" name="quiz38" class="quiz"> That&#39;s special syntax for ack channels.</li>
+                <li><input value="incorrect" type="radio" name="quiz38" class="quiz"> No reason; it&#39;s just a style
+                    choice.
+                </li>
+                <li><input value="correct" type="radio" name="quiz38" class="quiz"> Because @&quot;bob&quot; is a name,
+                    but we have to send processes.
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz38" class="quiz"> That&#39;s special syntax for ack
+                    channels.
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz38Correct">Correct!</p>
@@ -905,8 +1094,10 @@ for (msg &amp;lt;- myChan) {stdout!(*msg)}</code></p>
         <div class="card" id="bundlesSection">
             <h1 id="bundles">Bundles</h1>
             <h2 id="stolen-messages">Stolen Messages</h2>
-            <p class="imgWrapper"><img src="/assets/Alice.png" alt="Alice&#39;s fans love her and want to send her lots of mail ."></p>
-            <p>Alice is a rising celebrity who receives mail from her fans. They used to send mail directly to her on a public name.</p>
+            <p class="imgWrapper"><img src="/assets/Alice.png"
+                                       alt="Alice&#39;s fans love her and want to send her lots of mail ."></p>
+            <p>Alice is a rising celebrity who receives mail from her fans. They used to send mail directly to her on a
+                public name.</p>
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
   // Alice reads fan mail
   for (mail &lt;- @"alice") {
@@ -923,7 +1114,8 @@ for (msg &amp;lt;- myChan) {stdout!(*msg)}</code></p>
             <p>Write the code for a competitor to steal the mail
                 <!-- Answer in fanmailEve.rho -->
             </p>
-            <p>The problem is that the competitors can listen on the same channel Alice can. So what she really needs is for her fans to have a &quot;write-only bundle&quot;</p>
+            <p>The problem is that the competitors can listen on the same channel Alice can. So what she really needs is
+                for her fans to have a &quot;write-only bundle&quot;</p>
             <pre class="rholang-file">// These channels are basically public names within
 // the file like rho:pubkey:whatever
 
@@ -960,12 +1152,17 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
   }
 }
 </pre>
-            <p>The <code>bundle+ {*aliceFanMail}</code> is a channel just like <code>aliceFanMail</code> except it can only be snet on, not received.</p>
+            <p>The <code>bundle+ {*aliceFanMail}</code> is a channel just like <code>aliceFanMail</code> except it can
+                only be snet on, not received.</p>
             <h2 id="subscriptions">Subscriptions</h2>
-            <p>The bundle solution above does prevent Ewritten onve from stealing mail, which is good. But in the blockchain context it also has the unfortunate side effect that Alice has to pay to send her fanmail address. Blockchain fees work a little like postage.</p>
-            <p class="imgWrapper"><img src="/assets/returnEnvelope.png" alt="The sender includes a return envelope already posted to himself"></p>
+            <p>The bundle solution above does prevent Ewritten onve from stealing mail, which is good. But in the
+                blockchain context it also has the unfortunate side effect that Alice has to pay to send her fanmail
+                address. Blockchain fees work a little like postage.</p>
+            <p class="imgWrapper"><img src="/assets/returnEnvelope.png"
+                                       alt="The sender includes a return envelope already posted to himself"></p>
             <h3 id="exercise">Exercise</h3>
-            <p>Alice can save postage by making fans request the fanmail address from her. Then they will have to pay the transaction costs. A bit like sending a return envelope with a stamp already on it.</p>
+            <p>Alice can save postage by making fans request the fanmail address from her. Then they will have to pay
+                the transaction costs. A bit like sending a return envelope with a stamp already on it.</p>
             <p>Complete Alice&#39;s code so that she can get Bob the address he needs.</p>
             <p>Here&#39;s the answer:</p>
             <pre class="rholang-file">// These channels are basically public names within
@@ -1012,13 +1209,22 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
   }
 }
 </pre>
-            <p>Astute readers will notice that Eve can now just intercept messages asking for the fanmail address. Good observation. As a bonus exercise, you could write Eve&#39;s new code. (hint: it&#39;s the same as the old code). The solution to this problem involves public key cryptography and the registry. We&#39;ll learn about that in unit 4.</p>
+            <p>Astute readers will notice that Eve can now just intercept messages asking for the fanmail address. Good
+                observation. As a bonus exercise, you could write Eve&#39;s new code. (hint: it&#39;s the same as the
+                old code). The solution to this problem involves public key cryptography and the registry. We&#39;ll
+                learn about that in unit 4.</p>
             <h3 id="exercise">Exercise</h3>
-            <p>Our pizza shop back in lesson 2 had a similar problem to Alice. Rework that code so they can easily take on new customers.</p>
+            <p>Our pizza shop back in lesson 2 had a similar problem to Alice. Rework that code so they can easily take
+                on new customers.</p>
             <h2 id="jackpot">Jackpot</h2>
-            <p class="imgWrapper"><img src="/assets/jackpot.png" alt="A single &quot;thrower&quot; throws a ball for one of many catchers to catch"></p>
-            <p>I used to play a game called jackpot as a kid. One player would throw the ball and yell a number. The other players would all try to catch the ball and whoever caught it would receive that number of points.</p>
-            <p>Playing jackpot is just the opposite of sending fanmail. Before there were many fans all sending to one celebrity. Now there is one thrower, sending to one of many recipients</p>
+            <p class="imgWrapper"><img src="/assets/jackpot.png"
+                                       alt="A single &quot;thrower&quot; throws a ball for one of many catchers to catch">
+            </p>
+            <p>I used to play a game called jackpot as a kid. One player would throw the ball and yell a number. The
+                other players would all try to catch the ball and whoever caught it would receive that number of
+                points.</p>
+            <p>Playing jackpot is just the opposite of sending fanmail. Before there were many fans all sending to one
+                celebrity. Now there is one thrower, sending to one of many recipients</p>
             <pre class="rholang-file">new throw, stdout(`rho:io:stdout`) in {
   // Throw the ball worth five points
   throw!(5)
@@ -1041,44 +1247,69 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
 </pre>
             <p>Who will catch the ball in the jackpot code?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz39" class="quiz"> Bill because his catch code is first.</li>
-                <li><input value="incorrect" type="radio" name="quiz39" class="quiz"> Bill because his catch code is closest to the throw code.</li>
-                <li><input value="incorrect" type="radio" name="quiz39" class="quiz"> Paige because her catch code is last.</li>
-                <li><input value="correct"  type="radio" name="quiz39" class="quiz"> We don&#39;t know; it is nondeterminate.</li>
+                <li><input value="incorrect" type="radio" name="quiz39" class="quiz"> Bill because his catch code is
+                    first.
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz39" class="quiz"> Bill because his catch code is
+                    closest to the throw code.
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz39" class="quiz"> Paige because her catch code is
+                    last.
+                </li>
+                <li><input value="correct" type="radio" name="quiz39" class="quiz"> We don&#39;t know; it is
+                    nondeterminate.
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz39Correct">Correct!</p>
                 <p class="incorrect" id="quiz39incorrect">Incorrect. Please try again.</p>
             </div>
             <h3 id="exercise">Exercise</h3>
-            <p>Exercise: Use stdoutAck to display how many points each person actually gets when they catch the ball.</p>
+            <p>Exercise: Use stdoutAck to display how many points each person actually gets when they catch the
+                ball.</p>
             <!-- solution in jackpotNicePrinting.rho -->
 
-            <p>Most programming languages will allow you to join or &quot;concatenate&quot; two strings together, and rholang is no exception. We can <code>stdout!(&quot;Hello &quot; ++ &quot;world&quot;)</code>, but we can&#39;t concatenate a string with an int. That&#39;s why we had to use that <code>stdoutAck</code> trick. Another option is to print a list <code>stdout!([&quot;Bill caught it. Points earned: &quot;, *points])</code>. We&#39;ll go into more detail about both techniques in future lessons.</p>
+            <p>Most programming languages will allow you to join or &quot;concatenate&quot; two strings together, and
+                rholang is no exception. We can <code>stdout!(&quot;Hello &quot; ++ &quot;world&quot;)</code>, but we
+                can&#39;t concatenate a string with an int. That&#39;s why we had to use that <code>stdoutAck</code>
+                trick. Another option is to print a list <code>stdout!([&quot;Bill caught it. Points earned: &quot;,
+                    *points])</code>. We&#39;ll go into more detail about both techniques in future lessons.</p>
             <p>How is this game in rholang different than the real game where one ball is throw repeatedly?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz40" class="quiz"> It is a very accurate simulation</li>
-                <li><input value="correct"  type="radio" name="quiz40" class="quiz"> In rholang all balls are thrown at once and caught in any order</li>
-                <li><input value="incorrect" type="radio" name="quiz40" class="quiz"> In rholang the balls are caught in the reverse order from what they are thrown.</li>
-                <li><input value="incorrect" type="radio" name="quiz40" class="quiz"> In rholang Bill makes all his catches, then Paige makes all her catches.</li>
+                <li><input value="incorrect" type="radio" name="quiz40" class="quiz"> It is a very accurate simulation
+                </li>
+                <li><input value="correct" type="radio" name="quiz40" class="quiz"> In rholang all balls are thrown at
+                    once and caught in any order
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz40" class="quiz"> In rholang the balls are caught in
+                    the reverse order from what they are thrown.
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz40" class="quiz"> In rholang Bill makes all his
+                    catches, then Paige makes all her catches.
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz40Correct">Correct!</p>
                 <p class="incorrect" id="quiz40incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="imposter-throws">Imposter throws</h2>
-            <p>Notice that anyone can come along and mess up this game by throwing fake balls. This is just the opposite of Eve coming along and stealing Alice&#39;s fanmail.</p>
+            <p>Notice that anyone can come along and mess up this game by throwing fake balls. This is just the opposite
+                of Eve coming along and stealing Alice&#39;s fanmail.</p>
             <p>What code would Eve have to par in to throw an imposter ball worth 100 points?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz41" class="quiz"> for (imposter &lt;- throw){imposter!(100)}</li>
-                <li><input value="correct"  type="radio" name="quiz41" class="quiz"> throw!(100)</li>
-                <li><input value="incorrect" type="radio" name="quiz41" class="quiz"> @&quot;throw&quot;!(&quot;100&quot;)</li>
+                <li><input value="incorrect" type="radio" name="quiz41" class="quiz"> for (imposter &lt;-
+                    throw){imposter!(100)}
+                </li>
+                <li><input value="correct" type="radio" name="quiz41" class="quiz"> throw!(100)</li>
+                <li><input value="incorrect" type="radio" name="quiz41" class="quiz"> @&quot;throw&quot;!(&quot;100&quot;)
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz41Correct">Correct!</p>
                 <p class="incorrect" id="quiz41incorrect">Incorrect. Please try again.</p>
             </div>
-            <p>We solve this problem by making sure that the public can only read from the throw channel, but not write to it.</p>
+            <p>We solve this problem by making sure that the public can only read from the throw channel, but not write
+                to it.</p>
             <pre class="rholang-file">new gameCh, stdout(`rho:io:stdout`) in {
   new throw in {
 
@@ -1104,42 +1335,55 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
   }
 }
 </pre>
-            <p>Like before, this code requires the game host to pay for everyone who get&#39;s the bundle from him. It could be refactored so players have to subscribe to the game like we did with Alice and her fan mail.</p>
+            <p>Like before, this code requires the game host to pay for everyone who get&#39;s the bundle from him. It
+                could be refactored so players have to subscribe to the game like we did with Alice and her fan
+                mail.</p>
             <h2 id="public-key-crypto">Public Key Crypto</h2>
-            <p class="imgWrapper"><img src="/assets/privateNames.png" alt="This bundle is sealed within the blockchain world, but totaly openable to anyone outside. Remember that just because data is off limits within the blockchain, doesn&#39;t mean it&#39;s truly private."></p>
-            <p>In some ways, read-only bundles duplicate the signing features of <a href="https://en.wikipedia.org/wiki/Public-key_cryptography">public-key cryptography</a>. The jackpot catchers here are sure that the balls came from the thrower because only he can send on the throw channel, which is a lot like cryptographic signing.</p>
-            <p>In some ways write-only bundles duplicate the encryption features of public-key cryptography. Only Alice can receive messages sent on her fan mail channel. One <strong>very important difference</strong> is that the messages sent here are 100% visible from outside the blockchain! So while write-only bundles are an effective way to communicate unforgeable names, they are not a good way to plot a heist, or evade government surveillance. <strong>Be Careful!</strong></p>
+            <p class="imgWrapper"><img src="/assets/privateNames.png"
+                                       alt="This bundle is sealed within the blockchain world, but totaly openable to anyone outside. Remember that just because data is off limits within the blockchain, doesn&#39;t mean it&#39;s truly private.">
+            </p>
+            <p>In some ways, read-only bundles duplicate the signing features of <a
+                    href="https://en.wikipedia.org/wiki/Public-key_cryptography">public-key cryptography</a>. The
+                jackpot catchers here are sure that the balls came from the thrower because only he can send on the
+                throw channel, which is a lot like cryptographic signing.</p>
+            <p>In some ways write-only bundles duplicate the encryption features of public-key cryptography. Only Alice
+                can receive messages sent on her fan mail channel. One <strong>very important difference</strong> is
+                that the messages sent here are 100% visible from outside the blockchain! So while write-only bundles
+                are an effective way to communicate unforgeable names, they are not a good way to plot a heist, or evade
+                government surveillance. <strong>Be Careful!</strong></p>
             <h2 id="more-bundles">More Bundles</h2>
-            <p>In addition to read- and write-only bundles, there are two other types. The other bundle types are less common, but still useful. We&#39;ll explore them as the need arises, but I&#39;ll summarize them briefly here.</p>
+            <p>In addition to read- and write-only bundles, there are two other types. The other bundle types are less
+                common, but still useful. We&#39;ll explore them as the need arises, but I&#39;ll summarize them briefly
+                here.</p>
             <table>
                 <thead>
-                    <tr>
-                        <th>Syntax</th>
-                        <th>Can Read</th>
-                        <th>Can Write</th>
-                    </tr>
+                <tr>
+                    <th>Syntax</th>
+                    <th>Can Read</th>
+                    <th>Can Write</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><code>bundle- {proc}</code></td>
-                        <td>YES</td>
-                        <td>NO</td>
-                    </tr>
-                    <tr>
-                        <td><code>bundle+ {proc}</code></td>
-                        <td>NO</td>
-                        <td>YES</td>
-                    </tr>
-                    <tr>
-                        <td><code>bundle {proc}</code></td>
-                        <td>NO</td>
-                        <td>NO</td>
-                    </tr>
-                    <tr>
-                        <td><code>bundle {proc}</code></td>
-                        <td>YES</td>
-                        <td>YES</td>
-                    </tr>
+                <tr>
+                    <td><code>bundle- {proc}</code></td>
+                    <td>YES</td>
+                    <td>NO</td>
+                </tr>
+                <tr>
+                    <td><code>bundle+ {proc}</code></td>
+                    <td>NO</td>
+                    <td>YES</td>
+                </tr>
+                <tr>
+                    <td><code>bundle {proc}</code></td>
+                    <td>NO</td>
+                    <td>NO</td>
+                </tr>
+                <tr>
+                    <td><code>bundle {proc}</code></td>
+                    <td>YES</td>
+                    <td>YES</td>
+                </tr>
                 </tbody>
             </table>
 
@@ -1148,9 +1392,15 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
         <div class="card" id="stateChannelsSection">
             <h1 id="state-channels">State Channels</h1>
             <h2 id="holding-on-to-data">Holding on to data</h2>
-            <p class="imgWrapper"><img src="/assets/variables.png" alt="Variables are so 2015. It&#39;s all about state channels now."></p>
-            <p>By now you&#39;re good at sending data to the tuplespace, and receiving data from the tuplespace. But whenever you&#39;re computing, you occasionally need to set data aside to be used later. Almost every programming language has a concept of variables.</p>
-            <p>Another way in which rholang is unique is that it doesn&#39;t have traditional variables. Instead, we can just use the tuplespace to store our data. Whenever you want to set something aside for later, just send it on some channel and receive it back later. Channels that are used in this way are called &quot;state channels&quot;, and often have <code>Ch</code> at the end of their name</p>
+            <p class="imgWrapper"><img src="/assets/variables.png"
+                                       alt="Variables are so 2015. It&#39;s all about state channels now."></p>
+            <p>By now you&#39;re good at sending data to the tuplespace, and receiving data from the tuplespace. But
+                whenever you&#39;re computing, you occasionally need to set data aside to be used later. Almost every
+                programming language has a concept of variables.</p>
+            <p>Another way in which rholang is unique is that it doesn&#39;t have traditional variables. Instead, we can
+                just use the tuplespace to store our data. Whenever you want to set something aside for later, just send
+                it on some channel and receive it back later. Channels that are used in this way are called &quot;state
+                channels&quot;, and often have <code>Ch</code> at the end of their name</p>
             <pre class="rholang-file">new boxCh in {
   // To save data we just put it in the box
   boxCh!(42)
@@ -1167,7 +1417,7 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz42" class="quiz"> 0</li>
                 <li><input value="incorrect" type="radio" name="quiz42" class="quiz"> box</li>
-                <li><input value="correct"  type="radio" name="quiz42" class="quiz"> 42</li>
+                <li><input value="correct" type="radio" name="quiz42" class="quiz"> 42</li>
                 <li><input value="incorrect" type="radio" name="quiz42" class="quiz"> It is empty</li>
             </ul>
             <div class="quizResponse">
@@ -1179,14 +1429,16 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
                 <li><input value="incorrect" type="radio" name="quiz43" class="quiz"> 0</li>
                 <li><input value="incorrect" type="radio" name="quiz43" class="quiz"> @&quot;somePublicBox&quot;</li>
                 <li><input value="incorrect" type="radio" name="quiz43" class="quiz"> 42</li>
-                <li><input value="correct"  type="radio" name="quiz43" class="quiz"> It is empty</li>
+                <li><input value="correct" type="radio" name="quiz43" class="quiz"> It is empty</li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz43Correct">Correct!</p>
                 <p class="incorrect" id="quiz43incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="persisting-data">Persisting Data</h2>
-            <p>If we were to check the box again, we would not get a result. Because once we receive the message, it gets consumed from the tuplespace. We briefly discussed the solution back in our lesson on persistent sends and peeks.</p>
+            <p>If we were to check the box again, we would not get a result. Because once we receive the message, it
+                gets consumed from the tuplespace. We briefly discussed the solution back in our lesson on persistent
+                sends and peeks.</p>
             <pre class="rholang-file">new boxCh in {
   // To save data we just put it in the box
   boxCh!(42)
@@ -1206,7 +1458,7 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz44" class="quiz"> 0</li>
                 <li><input value="incorrect" type="radio" name="quiz44" class="quiz"> box</li>
-                <li><input value="correct"  type="radio" name="quiz44" class="quiz"> 42</li>
+                <li><input value="correct" type="radio" name="quiz44" class="quiz"> 42</li>
                 <li><input value="incorrect" type="radio" name="quiz44" class="quiz"> It is empty</li>
             </ul>
             <div class="quizResponse">
@@ -1217,7 +1469,7 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz45" class="quiz"> 0</li>
                 <li><input value="incorrect" type="radio" name="quiz45" class="quiz"> @&quot;somePublicBox&quot;</li>
-                <li><input value="correct"  type="radio" name="quiz45" class="quiz"> 42</li>
+                <li><input value="correct" type="radio" name="quiz45" class="quiz"> 42</li>
                 <li><input value="incorrect" type="radio" name="quiz45" class="quiz"> It is empty</li>
             </ul>
             <div class="quizResponse">
@@ -1225,8 +1477,11 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
                 <p class="incorrect" id="quiz45incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="patience-game-revisited">Patience Game Revisited</h2>
-            <p>A few lessons back we discussed the patience game, where each player hopes to be the last one to send a message to the contract. We had some problems back then because we couldn&#39;t guarantee that a result of the game would ever be output.</p>
-            <p>Take a minute to remind yourself of the problem we had. With a state channel, we can solve this problem properly.</p>
+            <p>A few lessons back we discussed the patience game, where each player hopes to be the last one to send a
+                message to the contract. We had some problems back then because we couldn&#39;t guarantee that a result
+                of the game would ever be output.</p>
+            <p>Take a minute to remind yourself of the problem we had. With a state channel, we can solve this problem
+                properly.</p>
             <pre class="rholang-file">new P1, P2, stdout(`rho:io:stdout`) in {
 
   // active gets its own scope so players can't change its value.
@@ -1253,18 +1508,28 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
 </pre>
             <p>How does the above code avoid the problem of each block getting called once?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz46" class="quiz"> By forcing player one to use the top block</li>
-                <li><input value="correct"  type="radio" name="quiz46" class="quiz"> Because after the first call <code>activeCh</code> is empty</li>
-                <li><input value="incorrect" type="radio" name="quiz46" class="quiz"> Because state channel make things sequential</li>
+                <li><input value="incorrect" type="radio" name="quiz46" class="quiz"> By forcing player one to use the
+                    top block
+                </li>
+                <li><input value="correct" type="radio" name="quiz46" class="quiz"> Because after the first call <code>activeCh</code>
+                    is empty
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz46" class="quiz"> Because state channel make things
+                    sequential
+                </li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz46Correct">Correct!</p>
                 <p class="incorrect" id="quiz46incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="objects-and-methods">Objects and Methods</h2>
-            <p class="imgWrapper"><img src="/assets/clickCounter.png" alt="This click-counter can be incremented and reset"></p>
-            <p>In &quot;Object Oriented Programming&quot; languages such as java, we can model real-world objects by encapsulating some data along with methods that use or change the data. The same thing is possible in rholang.</p>
-            <p>In this example, we&#39;ll create an object that represents a basic click counter. The ingredients are:</p>
+            <p class="imgWrapper"><img src="/assets/clickCounter.png"
+                                       alt="This click-counter can be incremented and reset"></p>
+            <p>In &quot;Object Oriented Programming&quot; languages such as java, we can model real-world objects by
+                encapsulating some data along with methods that use or change the data. The same thing is possible in
+                rholang.</p>
+            <p>In this example, we&#39;ll create an object that represents a basic click counter. The ingredients
+                are:</p>
             <ul>
                 <li>State Channels: currentCount</li>
                 <li>Methods: increase, reset</li>
@@ -1309,17 +1574,24 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
 }
 </pre>
             <h3 id="exercises">Exercises</h3>
-            <p>It is inconvenient to manually replace the counter value each time I check it. Instead we should have a method for that.</p>
+            <p>It is inconvenient to manually replace the counter value each time I check it. Instead we should have a
+                method for that.</p>
             <!-- answer in checkMethod.rho -->
 
 
             <h3 id="exercise">Exercise</h3>
-            <p>Now that it&#39;s easier and safer to check the counter, let&#39;s write some better tests that actually check all the methods.</p>
+            <p>Now that it&#39;s easier and safer to check the counter, let&#39;s write some better tests that actually
+                check all the methods.</p>
             <!-- answer in counterTests.rho -->
 
             <h2 id="factories">Factories</h2>
-            <p>If you&#39;ve programmed in other languages like java you may be familiar with constructors. If you haven&#39;t programmed in in java, that&#39;s great, because Rholang uses factories to make new objects rather than constructors.</p>
-            <p>The counter is a useful construct in rholang, and you&#39;ll likely find that you use it in your projects. The problem is that many projects may want to use counters, and having just one is insufficient. So the solution is to make a factory contract that makes counters. When the factory contract is called, it sends back a brand new counter.</p>
+            <p>If you&#39;ve programmed in other languages like java you may be familiar with constructors. If you haven&#39;t
+                programmed in in java, that&#39;s great, because Rholang uses factories to make new objects rather than
+                constructors.</p>
+            <p>The counter is a useful construct in rholang, and you&#39;ll likely find that you use it in your
+                projects. The problem is that many projects may want to use counters, and having just one is
+                insufficient. So the solution is to make a factory contract that makes counters. When the factory
+                contract is called, it sends back a brand new counter.</p>
             <pre class="rholang-file">new counterFactory, stdout(`rho:io:stdout`) in {
   contract counterFactory(increase, reset) = {
     new currentCount in {
@@ -1354,10 +1626,14 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
 </pre>
             <p>How would a user call the factory to get a new counter?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz47" class="quiz"> <code>counterFactory!(*ack)</code></li>
-                <li><input value="incorrect" type="radio" name="quiz47" class="quiz"> <code>counterFactory!(0, *ack)</code></li>
-                <li><input value="incorrect" type="radio" name="quiz47" class="quiz"> <code>@&quot;counterFactory&quot;()</code></li>
-                <li><input value="correct"  type="radio" name="quiz47" class="quiz"> <code>counterFactory!(myIncrease, myReset)</code></li>
+                <li><input value="incorrect" type="radio" name="quiz47" class="quiz"> <code>counterFactory!(*ack)</code>
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz47" class="quiz"> <code>counterFactory!(0,
+                    *ack)</code></li>
+                <li><input value="incorrect" type="radio" name="quiz47" class="quiz"> <code>@&quot;counterFactory&quot;()</code>
+                </li>
+                <li><input value="correct" type="radio" name="quiz47" class="quiz"> <code>counterFactory!(myIncrease,
+                    myReset)</code></li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz47Correct">Correct!</p>
@@ -1365,18 +1641,23 @@ new alice, bob, eve, stdout(`rho:io:stdout`) in {
             </div>
             <p>How would a user reset their counter after creating as indicated above.</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz48" class="quiz"> <code>myIncrease!(*ack)</code></li>
-                <li><input value="correct"  type="radio" name="quiz48" class="quiz"> <code>myReset!(*ack)</code></li>
-                <li><input value="incorrect" type="radio" name="quiz48" class="quiz"> <code>counterFactory!(myReset, *ack)</code></li>
-                <li><input value="incorrect" type="radio" name="quiz48" class="quiz"> <code>counterFactory!(myReset)</code></li>
+                <li><input value="incorrect" type="radio" name="quiz48" class="quiz"> <code>myIncrease!(*ack)</code>
+                </li>
+                <li><input value="correct" type="radio" name="quiz48" class="quiz"> <code>myReset!(*ack)</code></li>
+                <li><input value="incorrect" type="radio" name="quiz48" class="quiz"> <code>counterFactory!(myReset,
+                    *ack)</code></li>
+                <li><input value="incorrect" type="radio" name="quiz48" class="quiz">
+                    <code>counterFactory!(myReset)</code></li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz48Correct">Correct!</p>
                 <p class="incorrect" id="quiz48incorrect">Incorrect. Please try again.</p>
             </div>
             <h2 id="method-dispatching">Method Dispatching</h2>
-            <p>There are two primary techniques for making methods available. The first option I call &quot;separation of powers&quot; because each method listens on its own dedicated channel.</p>
-            <p>Another option is the &quot;control panel&quot; technique where there is a single unforgeable name called the control panel and all the methods are built on it.</p>
+            <p>There are two primary techniques for making methods available. The first option I call &quot;separation
+                of powers&quot; because each method listens on its own dedicated channel.</p>
+            <p>Another option is the &quot;control panel&quot; technique where there is a single unforgeable name called
+                the control panel and all the methods are built on it.</p>
             <pre class="inline-code">// Separation of Powers
 contract factory(method1, method2) = {
   contract method1(ack) = { ... }
@@ -1390,7 +1671,7 @@ contract factory(cPanel) = {
 }</pre>
             <p>Which technique did the counter example use to dispatch methods?</p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz49" class="quiz"> Separation of Powers</li>
+                <li><input value="correct" type="radio" name="quiz49" class="quiz"> Separation of Powers</li>
                 <li><input value="incorrect" type="radio" name="quiz49" class="quiz"> Control Panel</li>
             </ul>
             <div class="quizResponse">
@@ -1398,7 +1679,8 @@ contract factory(cPanel) = {
                 <p class="incorrect" id="quiz49incorrect">Incorrect. Please try again.</p>
             </div>
             <h3 id="exercise">Exercise</h3>
-            <p>Convert the counter example to use the other method dispatching technique. You should convert the tests too.</p>
+            <p>Convert the counter example to use the other method dispatching technique. You should convert the tests
+                too.</p>
 
         </div>
 
