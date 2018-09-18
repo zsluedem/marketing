@@ -261,120 +261,136 @@
 }
 </code></pre>
 
-            <p>As the message says, you learn most when you experiment. So be sure to change things as you see fit.</p>
-            <h3 id="exercise">Exercise</h3>
-            <p>That telephone game was fun, but it&#39;s always better the have more players. Go ahead and add a third player called Charlie. Instead of printing to <code>stdout</code>, bob will send the message along to Charlie. Then Charlie will print it to the screen. The More the Merrier!</p>
-            <p class="imgWrapper"><img src="/assets/telephoneChangedMessage.png" alt="The message never seems to get there correctly. I blame Bob."></p>
-            <h3 id="exercise">Exercise</h3>
-            <p>If you&#39;ve ever actually played telephone, you know that the message rarely arrives in tact. Bob decided to mix it up by passing along a false message. Change the program so Bob passes along a different message regardless of what he receives.</p>
-            <h2 id="wth-is-that-">WTH is That <code>*</code>?</h2>
+            <p>正如消息所言，通过实验你收获得最多。因此，请你确保按照合适的方式来更改它。</p>
+            <h3 id="exercise">练习</h3>
+            <p>传话游戏很有趣，但有更多玩家参与会更好。请添加第三位明教Charlie的玩家。bob将发送消息给Charlie，而不是简单打印至<code>stdout</code>。然后Charlie将它打印至屏幕上。多多益善!
+            </p>
+            <p class="imgWrapper"><img src="/assets/telephoneChangedMessage.png"
+                                       alt="The message never seems to get there correctly. I blame Bob."></p>
+            <h3 id="exercise">练习</h3>
+            <p>如果你曾经玩过电话，你应该知道，消息极少能被完整地传递。Bob决定通过传递一条错误的消息来混淆它。改写程序，使得Bob无论收到什么，都能传递不同的消息。</p>
+            <h2 id="wth-is-that-"><code>*</code>这到底是啥？</h2>
             <p class="imgWrapper"><img src="/assets/inverse.png" alt="Opposites attract"></p>
-            <p>Did you notice the <code>*</code> in <code>@&quot;Bob&quot;!(*message)</code>? In rholang there are two kinds of things, &quot;names&quot; and &quot;processes&quot;. There are also ways to convert between the two.</p>
+            <p>你注意到 <code>@&quot;Bob&quot;!(*message)</code>中的<code>*</code>? 在rholang中有两种类型，
+                &quot;names&quot; and &quot;processes&quot;. 同样也有可以在两者之间互相转化的方法。</p>
             <!-- TODO: Maybe an illustration of arrows labeled * and @ would be better here? -->
 
-            <p>A &quot;process&quot; is any piece of rholang code such as our telephone game, or our pizza shop order program. Processes can be big hundred-line programs or small on-liners. They can even be tiny pieces of code that are just values. Here are some example processes.</p>
+            <p>"进程"是rho语言中任何一个代码片段，例如我们的传话筒游戏，或者是披萨店订单程序。进程可以是上百行的大程序，也可以只有几行。它们甚至可以是用于表示值的微小代码片段。</p>
             <ul>
-                <li><code>stdout!(&quot;Sup Rholang?&quot;)</code> A common send</li>
-                <li><code>0</code> The smallest possible process. It literally means &quot;do nothing&quot;.</li>
-                <li><code>for(msg &lt;- @&quot;phone&quot;){0}</code> A common receive that does nothing when a message arrives.</li>
-                <li><code>&quot;Hello World&quot;</code> Another small process that also does nothing. These are called &quot;Ground Terms&quot;.</li>
+                <li><code>stdout!(&quot;Sup Rholang?&quot;)</code> 一个常见的发送操作。</li>
+                <li><code>0</code> 最小的进程。如字面意思，它不做任何事。</li>
+                <li><code>for(msg &lt;- @&quot;phone&quot;){0}</code> 一个常见的接收操作，在消息到达时它不会做任何事。</li>
+                <li><code>&quot;Hello World&quot;</code> 另一个不做任何事请的小进程。被称为"基础术语"。</li>
             </ul>
-            <p>A name is something that can be used as a channel to send messages over. In most programming languages, names are totally separate things that exist on their own. But in rholang, names come from &quot;quoting processes&quot; by putting the <code>@</code> sign before a process. Here are some example names.</p>
+            <p>名称可以被用于赋名通道以发送消息。在大多数编程语言中，名称是完全独立的，它们本身就存在。但是在rho语言中，名称来自"引用进程"，即将<code>@</code>标签放在进程之前。</p>
             <ul>
-                <li><code>@&quot;Hello World&quot;</code> Made by quoting the ground term &quot;Hello World&quot;.</li>
-                <li><code>@0</code> The smallest possible name. Made by quoting the smallest possible process.</li>
-                <li><code>@(@&quot;Alice&quot;!(&quot;I like rholang, pass it on.&quot;))</code> Made by quoting a process from our telephone game</li>
+                <li><code>@&quot;Hello World&quot;</code> 通过引用基础术语"Hello World"来创建</li>
+                <li><code>@0</code> 最小的名称。通过引用最小的进程来创建。</li>
+                <li><code>@(@&quot;Alice&quot;!(&quot;I like rholang, pass it on.&quot;))</code> 通过引用来自传话筒游戏的进程来创建。</li>
             </ul>
-            <h2 id="so-what-is-all-about-">So What is <code>*</code> all about?</h2>
-            <p class="imgWrapper"><img src="/assets/myNameIs.png" alt="What kind of name is that!? Did your parents just name you after some computer code?"></p>
-            <p>We can package processes up to make names by quoting them with the <code>@</code> symbol. We can also turn names back into processes by &quot;unquoting&quot; them with the <code>*</code> symbol.</p>
-            <p>The big thing to remember is in rholang we <strong>send processes and receive names</strong>. That&#39;s important so I&#39;ll say it again. You always <strong>send a process</strong> and on the other end, you <strong>receive a name</strong>.</p>
-            <p>When Alice receives our message with <code>for(message &lt;- @&quot;Alice&quot;)</code> she is receiving, so <code>message</code> becomes a name. When she later sends to Bob she has to send a process, so she uses <code>*</code> to turn <code>message</code> back into a process with <code>@&quot;Bob&quot;!(*message)</code></p>
-            <h2 id="quiz">Quiz</h2>
-            <p>What do we send?</p>
+            <h2 id="so-what-is-all-about-">关于<code>*</code>的一切</h2>
+            <p class="imgWrapper"><img src="/assets/myNameIs.png"
+                                       alt="What kind of name is that!? Did your parents just name you after some computer code?">
+            </p>
+            <p>We can package processes up to make names by quoting them with the <code>@</code> symbol. We can also
+                turn names back into processes by &quot;unquoting&quot; them with the <code>*</code> symbol.</p>
+            <p>通过用<code>@</code>符号来引用它们，我们可以将进程打包以创建一些名称。我们也可以通过使用<code>*</code>符号来解引用，从而将名称转变为进程。</p>
+            <p>The big thing to remember is in rholang we <strong>send processes and receive names</strong>. That&#39;s
+                important so I&#39;ll say it again. You always <strong>send a process</strong> and on the other end, you
+                <strong>receive a name</strong>.</p>
+            <p>在rho语言中，我们需要记住的是<strong>发送进程和接收名称</strong>。这很重要，因此我再次强调。你总是<strong>发送一个进程</strong>，在另一端<strong>接收一个名称</strong></p>
+            <p>Aice通过<code>for(message &lt;- @&quot;Alice&quot;)</code>接收我们的消息，所以，
+                 <code>message</code> 变成了一个名称. 当她之后发送给Bob时，她不得不发送进程，所以她借助语句<code>@"Bob"!(*message)</code>使用<code>*</code>将<code>message</code>转变回一个进程。
+            </p>
+            <h2 id="quiz">小测验</h2>
+            <p>我们发送了什么？</p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz7" class="quiz"> processes</li>
-                <li><input value="incorrect"  type="radio" name="quiz7" class="quiz"> names</li>
+                <li><input value="correct" type="radio" name="quiz7" class="quiz"> 进程</li>
+                <li><input value="incorrect" type="radio" name="quiz7" class="quiz"> 名称</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz7Correct">Correct!</p>
-                <p class="incorrect" id="quiz7incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz7Correct">正确!</p>
+                <p class="incorrect" id="quiz7incorrect">错误. 请重试.</p>
             </div>
-            <p>What do we receive?</p>
+            <p>我们接收什么？</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz8" class="quiz"> processes</li>
-                <li><input value="correct"  type="radio" name="quiz8" class="quiz"> names</li>
+                <li><input value="incorrect" type="radio" name="quiz8" class="quiz"> 进程</li>
+                <li><input value="correct" type="radio" name="quiz8" class="quiz"> 名称</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz8Correct">Correct!</p>
-                <p class="incorrect" id="quiz8incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz8Correct">正确!</p>
+                <p class="incorrect" id="quiz8incorrect">错误. 请重试.</p>
             </div>
-            <p> What is <code>@&quot;registration&quot;</code></p>
+            <p> <code>@&quot;registration&quot;</code>是什么</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz9" class="quiz"> process</li>
-                <li><input value="correct"  type="radio" name="quiz9" class="quiz"> name</li>
-                <li><input value="incorrect" type="radio" name="quiz9" class="quiz"> invalid syntax</li>
+                <li><input value="incorrect" type="radio" name="quiz9" class="quiz"> 进程</li>
+                <li><input value="correct" type="radio" name="quiz9" class="quiz"> 名称</li>
+                <li><input value="incorrect" type="radio" name="quiz9" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz9Correct">Correct!</p>
-                <p class="incorrect" id="quiz9incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz9Correct">正确!</p>
+                <p class="incorrect" id="quiz9incorrect">错误. 请重试.</p>
             </div>
-            <p>What is <code>0</code>?</p>
+            <p><code>0</code>是什么?</p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz10" class="quiz"> process</li>
-                <li><input value="incorrect" type="radio" name="quiz10" class="quiz"> name</li>
-                <li><input value="incorrect" type="radio" name="quiz10" class="quiz"> invalid syntax</li>
+                <li><input value="correct" type="radio" name="quiz10" class="quiz"> 进程</li>
+                <li><input value="incorrect" type="radio" name="quiz10" class="quiz"> 名称</li>
+                <li><input value="incorrect" type="radio" name="quiz10" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz10Correct">Correct!</p>
-                <p class="incorrect" id="quiz10incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz10Correct">正确!</p>
+                <p class="incorrect" id="quiz10incorrect">错误. 请重试.</p>
             </div>
-            <p>What is <code>@0</code>?</p>
+            <p><code>@0</code>是什么?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz11" class="quiz"> process</li>
-                <li><input value="correct"  type="radio" name="quiz11" class="quiz"> name</li>
-                <li><input value="incorrect" type="radio" name="quiz11" class="quiz"> invalid syntax</li>
+                <li><input value="incorrect" type="radio" name="quiz11" class="quiz"> 进程</li>
+                <li><input value="correct" type="radio" name="quiz11" class="quiz"> 名称</li>
+                <li><input value="incorrect" type="radio" name="quiz11" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz11Correct">Correct!</p>
-                <p class="incorrect" id="quiz11incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz11Correct">正确!</p>
+                <p class="incorrect" id="quiz11incorrect">错误. 请重试.</p>
             </div>
-            <p>What is <code>@@0</code>?</p>
+            <p><code>@@0</code>是什么?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz12" class="quiz"> process</li>
-                <li><input value="incorrect" type="radio" name="quiz12" class="quiz"> name</li>
-                <li><input value="correct"  type="radio" name="quiz12" class="quiz"> invalid syntax</li>
+                <li><input value="incorrect" type="radio" name="quiz12" class="quiz"> 进程</li>
+                <li><input value="incorrect" type="radio" name="quiz12" class="quiz"> 名称</li>
+                <li><input value="correct" type="radio" name="quiz12" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz12Correct">Correct!</p>
-                <p class="incorrect" id="quiz12incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz12Correct">正确!</p>
+                <p class="incorrect" id="quiz12incorrect">错误. 请重试.</p>
             </div>
-            <p><code>*importantData</code> is a process, so what is <code>importantData</code>?</p>
+            <p><code>*importantData</code> 是一个进程，那么 <code>importantData</code>是什么?</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz13" class="quiz"> process</li>
-                <li><input value="correct"  type="radio" name="quiz13" class="quiz"> name</li>
-                <li><input value="incorrect" type="radio" name="quiz13" class="quiz"> invalid syntax</li>
+                <li><input value="incorrect" type="radio" name="quiz13" class="quiz"> 进程</li>
+                <li><input value="correct" type="radio" name="quiz13" class="quiz"> 名称</li>
+                <li><input value="incorrect" type="radio" name="quiz13" class="quiz"> 非法语法</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz13Correct">Correct!</p>
-                <p class="incorrect" id="quiz13incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz13Correct">正确!</p>
+                <p class="incorrect" id="quiz13incorrect">错误. 请重试.</p>
             </div>
-            <p> Which of these is equivalent to <code>&quot;BobsPhone&quot;</code>?</p>
+            <p> 下面哪一个与<code>&quot;BobsPhone&quot;</code>等价?</p>
             <ul class="quiz">
-                <li><input value="correct"  type="radio" name="quiz14" class="quiz"> <code>*@&quot;BobsPhone&quot;</code></li>
-                <li><input value="incorrect" type="radio"  name="quiz14" class="quiz"> <code>@&quot;BobsPhone&quot;</code></li>
-                <li><input value="incorrect" type="radio"  name="quiz14" class="quiz"> <code>*&quot;BobsPhone&quot;</code></li>
-                <li><input value="incorrect" type="radio"  name="quiz14" class="quiz"> <code>@*BobsPhone</code></li>
-                <li><input value="incorrect" type="radio"  name="quiz14" class="quiz"> <code>stdout!(&quot;BobsPhone&quot;)</code></li>
+                <li><input value="correct" type="radio" name="quiz14" class="quiz"> <code>*@&quot;BobsPhone&quot;</code>
+                </li>
+                <li><input value="incorrect" type="radio" name="quiz14" class="quiz">
+                    <code>@&quot;BobsPhone&quot;</code></li>
+                <li><input value="incorrect" type="radio" name="quiz14" class="quiz">
+                    <code>*&quot;BobsPhone&quot;</code></li>
+                <li><input value="incorrect" type="radio" name="quiz14" class="quiz"> <code>@*BobsPhone</code></li>
+                <li><input value="incorrect" type="radio" name="quiz14" class="quiz"> <code>stdout!(&quot;BobsPhone&quot;)</code>
+                </li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz14Correct">Correct!</p>
-                <p class="incorrect" id="quiz14incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz14Correct">正确!</p>
+                <p class="incorrect" id="quiz14incorrect">错误. 请重试.</p>
             </div>
-            <h3 id="exercise">Exercise</h3>
+            <h3 id="exercise">练习</h3>
             <p class="imgWrapper"><img src="/assets/telephoneFork.png" alt="This telephone game has a fork"></p>
-            <p>Instead of a linear telephone game where each player passes the message to the next, let&#39;s add a branch in the game. So now Bob will send to Charlie like before, but Bob will also send to Elise.</p>
-            <p>Each branch can be as long as you want, but at the end of each branch, print the message to stdout.</p>
+            <p>不像之前的线性传话游戏那样，每个玩家将信息传递给下一位，我么来为游戏添加一个分支。现在，Bob与先前一样将发送消息给Charlie，但同时也会发送给Elise。</p>
+            <p>每个分支的长度由你定，但在每个分支的最后都得将消息打印至标准输出。</p>
 
         </div>
 
@@ -382,11 +398,20 @@
         <div class="card" id="sendAndPeekSection">
             <h1 id="persistent-sends-and-peek">Persistent Sends and Peek</h1>
             <h2 id="why-send-repeatedly-">Why send repeatedly?</h2>
-            <p class="imgWrapper"><img src="/assets/broadcasting.png" alt="This radio navigation aid helps airplanes navigate by broadcasting the same message over and over"></p>
-            <p>Our pizza and coffee shops were both interested in receiving many messages on the same reusable channel. We accomplished that with a persistent for <code>for (msg &lt;= chan){...}</code> or a contract <code>contract chan(msg){...}</code>.</p>
-            <p>An air traffic control tower may be interested in doing just the opposite -- sending the same message over and over. The controllers in the tower want to record a message containing weather and active runway information once, and make it available for every pilot who needs it. Like the pizza shop, they are busy and can&#39;t be bothered to continually re-send the message every time a pilot consumes it.</p>
+            <p class="imgWrapper"><img src="/assets/broadcasting.png"
+                                       alt="This radio navigation aid helps airplanes navigate by broadcasting the same message over and over">
+            </p>
+            <p>Our pizza and coffee shops were both interested in receiving many messages on the same reusable channel.
+                We accomplished that with a persistent for <code>for (msg &lt;= chan){...}</code> or a contract <code>contract
+                    chan(msg){...}</code>.</p>
+            <p>An air traffic control tower may be interested in doing just the opposite -- sending the same message
+                over and over. The controllers in the tower want to record a message containing weather and active
+                runway information once, and make it available for every pilot who needs it. Like the pizza shop, they
+                are busy and can&#39;t be bothered to continually re-send the message every time a pilot consumes
+                it.</p>
             <h2 id="persistent-send-syntax">Persistent send syntax</h2>
-            <p>The control tower just needs a minor adjustment in their code to make the send persistent. Rather than sending with a single <code>!</code>, they will use a double <code>!!</code>.</p>
+            <p>The control tower just needs a minor adjustment in their code to make the send persistent. Rather than
+                sending with a single <code>!</code>, they will use a double <code>!!</code>.</p>
 
             <pre class="rholang-file">// ATC sends the info
 @"airportInfo"!!("No wind; Runway 11")
