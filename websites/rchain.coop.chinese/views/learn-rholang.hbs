@@ -23,9 +23,9 @@
 
     <div class="lesson" id="fundamentals">
         <div class="card" id="intro">
-            <h6>教程 / 学习Rholang</h6>
-            <h2>开始学习Rholang</h2>
-            <p>通过例子和实验来学习rholang。下面的例子和练习都很值得去运行、阅读、修改完善。更改任何你感到好奇的地方，能够收获最好的学习效果。该教程包含了rholang最常见以及最重要的特性，足以让开发者快速入门。</p>
+            <h6>教程 / 学习Rho语言</h6>
+            <h2>开始学习Rho语言</h2>
+            <p>通过例子和实验来学习rho语言。下面的例子和练习都很值得去运行、阅读、修改完善。更改任何你感到好奇的地方，能够收获最好的学习效果。该教程包含了rho语言最常见以及最重要的特性，足以让开发者快速入门。</p>
         </div>
 
         <div class="card" id="sendingSection">
@@ -40,7 +40,6 @@
             <h3 id="exercise">练习</h3>
             <p>请让程序输出"Rholang rocks!" 而不是 "Hello World".</p>
             <h3 id="exercise">练习</h3>
-            <p>Try to change &quot;stdout&quot; to something else. Any results?.</p>
             <p>尝试将"stdout"其他语句。会得到什么结果？</p>
             <p></p>
             <ul>
@@ -49,24 +48,21 @@
             </ul>
             <h2 id="wth-is-stdout-">标准输出(stdout)到底是啥</h2>
             <p class="imgWrapper"><img src="/assets/mailbox.png" alt="Channels are like mailboxes for sending messages"></p>
-            <p>rholang的核心是通道通信. 通道是你可以用来发送和接收消息的通信线路。你可以使用<code>!</code> 字符来在通道中发送消息.</p>
+            <p>rho语言的核心是通道通信. 通道是你可以用来发送和接收消息的通信线路。你可以使用<code>!</code> 字符来在通道中发送消息.</p>
             <p class="imgWrapper"><img src="/assets/sendSyntax.png" alt="Redo this diagram!"></p>
-            <p><code>stdout</code> is a special channel that is used to send text to &quot;standard out&quot; which usually just means your computer screen. Because it&#39;s special, we had to have that first line of code.</p>
             <p><code>stdout</code> 是一个特殊的通道，用于将文本发送至"标准输出",通常指你的电脑屏幕。正因为它的特殊，我们不得不将它写在代码的第一行。</p>
             <h2 id="using-other-channels">使用其他通道</h2>
             <p class="imgWrapper"><img src="/assets/mailboxes.png" alt="Sent messages wait to be received here in &quot;message purgatory&quot;... JK, it&#39;s called the &quot;tuplespace&quot;"></p>
-            <p>You can actually send messages on lots of channels, not just <code>stdout</code>. But unlike <code>stdout</code> they won&#39;t display on the screen.</p>
             <p>实际上你可以在很多通道中发送消息，而非只有<code>stdout</code>. 但不像<code>stdout</code> 他们不会在屏幕上显示.</p>
 
             <pre class="rholang-file">&commat;"RandoChannel"!("This won't be on the screen")</pre>
 
             <p>那么，在其他通道中的消息将被发送至哪里？哪里都不会去！无论如何都不会。这些消息会继续待在通道内，等待某个程序去消费它们。我们将在下一课程中学习如何消费这些消息。同时，消息滞留所在的地方，我们称为 "元组空间"</p>
-            <p>Remember when you tried it a few slides ago? Try that again and make sure your message is sitting in the tuplespace.</p>
             <p>还记得你曾经在之前尝试写过下面这段代码么？请再一次尝试，并确保你的消息停留在元组空间中。</p>
             <p class="imgWrapper"><img src="/assets/tupleSpace.png" alt="You should find something like this highlighted text in your tuplespace."></p>
             <h2 id="doing-two-things-at-once">同时做两件事</h2>
             <p class="imgWrapper"><img src="/assets/cooking.png" alt="Rather than following an ordered list, all ingredients are added concurrently.  Looks delicions"></p>
-            <p>在rholang中，我们不会告诉计算机做完一件事，再到另一件。相反，我们会告诉它需要做的所有事情，然后"并行地"执行它们，或者一次性执行。</p>
+            <p>在rho语言中，我们不会告诉计算机做完一件事，再到另一件。相反，我们会告诉它需要做的所有事情，然后"并行地"执行它们，或者一次性执行。</p>
 
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
   stdout!("I'm on the screen")
@@ -77,13 +73,10 @@
 
             <p><code>|</code> 的发音是 &quot;parallel&quot, 可简称为 &quot;par&quot;.</p>
             <h3 id="exercise">锻炼</h3>
-            <p>Send the message &quot;1 large pepperoni please&quot; on a channel called &quot;pizza shop&quot;.</p>
             <p>向"pizza shop"通道发送消息"1 large peperoni please" </p>
             <h3 id="exercise">锻炼</h3>
-            <p>Send &quot;Hi Mom&quot; on the channel &quot;Mom&#39;s Phone&quot;.</p>
             <p>向"Mom's Phone"通道发送"Hi Mom"</p>
             <h3 id="exercise">锻炼</h3>
-            <p>Print two messages, &quot;Rick&quot; and &quot;Morty&quot;, on the screen in one program.</p>
             <p>打印两个消息，"Rick"和 "Morty"</p>
             <h2 id="quiz">小测试</h2>
             <p><code>stdout!(&quot;Programming!&quot;)</code> 将在屏幕上打印什么？</p>
@@ -106,14 +99,14 @@
                 <p class="correct" id="quiz2Correct">正确!</p>
                 <p class="incorrect" id="quiz2incorrect">错误。请再试一次。</p>
             </div>
-            <p>rholang会先执行哪一条语句？</p>
+            <p>rho语言会先执行哪一条语句？</p>
             <pre class="inline-code">@"stdout"!("Dogs")
 |
 @"stdout"!("Cats")</pre>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz3" class="quiz"> prints &quot;Dogs&quot;</li>
-                <li><input value="incorrect" type="radio" name="quiz3" class="quiz"> prints &quot;Cats&quot;</li>
-                <li><input value="correct" type="radio" name="quiz3" class="quiz"> Neither. They are concurrent</li>
+                <li><input value="incorrect" type="radio" name="quiz3" class="quiz"> 打印 &quot;Dogs&quot;</li>
+                <li><input value="incorrect" type="radio" name="quiz3" class="quiz"> 打印 &quot;Cats&quot;</li>
+                <li><input value="correct" type="radio" name="quiz3" class="quiz"> 都不. 它们是并行的</li>
             </ul>
             <div class="quizResponse">
                 <p class="correct" id="quiz3Correct">正确!</p>
@@ -131,7 +124,6 @@
             <h1 id="receiving">接收</h1>
             <h2 id="check-for-messages">消息检查</h2>
             <p class="imgWrapper"><img src="/assets/Keys.png" alt="// Dear future self, keys in freezer because..."></p>
-            <p>We learned last time how to send a message. Now it&#39;s time to learn how to receive a message. The general syntax is:</p>
             <p>在上一章我们学习了如何发送消息。现在是时候学习如何接收消息了。常规语法如下：</p>
             <p><code>for(message &lt;- channel){ // Do something here}</code></p>
             <p>顺便提一下， <code>//</code> 用于书写注释。 它们仅仅是为了方便开发者阅读，并不会影响程序的运行。</p>
@@ -156,7 +148,7 @@
 }</pre>
             <p>尝试下面新的方案</p>
             <pre class="inline-code">new world, stdout(`rho:io:stdout`) in {
-  world!("Welcome to RChain") // No more @ or " "
+  world!("Welcome to RChain") // 不会再有@或者" "
 }</pre>
             <p>我们将在不可伪造命名的课程中讲解它的原理。现在你不需要每次都重置通道。</p>
             <h2 id="receiving-before-sending">发送前接收</h2>
@@ -217,8 +209,8 @@
                 <li><input value="incorrect" type="radio" name="quiz5" class="quiz"> <code>for (a &lt;= b){}</code></li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz5Correct">Correct!</p>
-                <p class="incorrect" id="quiz5incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz5Correct">正确!</p>
+                <p class="incorrect" id="quiz5incorrect">错误. 请重试.</p>
             </div>
             <p>哪一个发送语句会在执行<code>for (message &lt;- @&quot;grandmasSnapChat&quot;){0}</code>后产生一个通信事件 ?</p>
             <ul class="quiz">
@@ -241,21 +233,21 @@
             <p>现在让我们做一些更有意思的事情——类似孩子们的传话游戏那样传递消息</p>
 
             <pre class="rholang-file"><code>new stdout(`rho:io:stdout`) in {
-  // Start the game by sending a message to Alice
+  // 通过发送消息给Alice来开启游戏
   @"Alice"!("How to program: Change stuff and see what happens.")
   |
 
-  // Concurrently, Alice listens for the message
+  // 并行地，Alice监听消息
   for (message &lt;- @"Alice") {
 
-    // When she receives the message she'll pass it on to Bob
+    // 当她接收到消息时，她会传递给Bob
     @"Bob"!(*message)
   }
   |
 
-  // Concurrently, Bob will listens for the message
+  // 并行地，Bob监听消息
   for (message &lt;- @"Bob") {
-    // Bob is the last player, so he'll announce the message
+    // Bob是最后一名玩家，所以他将宣布消息
     stdout!(*message)
   }
 }
@@ -271,8 +263,8 @@
             <p>如果你曾经玩过电话，你应该知道，消息极少能被完整地传递。Bob决定通过传递一条错误的消息来混淆它。改写程序，使得Bob无论收到什么，都能传递不同的消息。</p>
             <h2 id="wth-is-that-"><code>*</code>这到底是啥？</h2>
             <p class="imgWrapper"><img src="/assets/inverse.png" alt="Opposites attract"></p>
-            <p>你注意到 <code>@&quot;Bob&quot;!(*message)</code>中的<code>*</code>? 在rholang中有两种类型，
-                &quot;names&quot; and &quot;processes&quot;. 同样也有可以在两者之间互相转化的方法。</p>
+            <p>你注意到 <code>@&quot;Bob&quot;!(*message)</code>中的<code>*</code>? 在rho语言中有两种类型，
+                &quot;names&quot; 和 &quot;processes&quot;. 同样也有可以在两者之间互相转化的方法。</p>
             <!-- TODO: Maybe an illustration of arrows labeled * and @ would be better here? -->
 
             <p>"进程"是rho语言中任何一个代码片段，例如我们的传话筒游戏，或者是披萨店订单程序。进程可以是上百行的大程序，也可以只有几行。它们甚至可以是用于表示值的微小代码片段。</p>
@@ -292,12 +284,8 @@
             <p class="imgWrapper"><img src="/assets/myNameIs.png"
                                        alt="What kind of name is that!? Did your parents just name you after some computer code?">
             </p>
-            <p>We can package processes up to make names by quoting them with the <code>@</code> symbol. We can also
-                turn names back into processes by &quot;unquoting&quot; them with the <code>*</code> symbol.</p>
+
             <p>通过用<code>@</code>符号来引用它们，我们可以将进程打包以创建一些名称。我们也可以通过使用<code>*</code>符号来解引用，从而将名称转变为进程。</p>
-            <p>The big thing to remember is in rholang we <strong>send processes and receive names</strong>. That&#39;s
-                important so I&#39;ll say it again. You always <strong>send a process</strong> and on the other end, you
-                <strong>receive a name</strong>.</p>
             <p>
                 在rho语言中，我们需要记住的是<strong>发送进程和接收名称</strong>。这很重要，因此我再次强调。你总是<strong>发送一个进程</strong>，在另一端<strong>接收一个名称</strong>
             </p>
@@ -398,18 +386,13 @@
 
 
         <div class="card" id="sendAndPeekSection">
-            <h1 id="persistent-sends-and-peek">持续发送与峰值</h1>
+            <h1 id="persistent-sends-and-peek">持续发送与窥探</h1>
             <h2 id="why-send-repeatedly-">为什么要重复发送？</h2>
             <p class="imgWrapper"><img src="/assets/broadcasting.png"
                                        alt="This radio navigation aid helps airplanes navigate by broadcasting the same message over and over">
             </p>
             <p>我们的披萨和咖啡店都乐于在同一复用通道中接收消息。我们使用一个持续的 <code>for (msg &lt;= chan){...}</code>或者一个合约<code>contract
                 chan(msg){...}</code>来达成这一目的。</p>
-            <p>An air traffic control tower may be interested in doing just the opposite -- sending the same message
-                over and over. The controllers in the tower want to record a message containing weather and active
-                runway information once, and make it available for every pilot who needs it. Like the pizza shop, they
-                are busy and can&#39;t be bothered to continually re-send the message every time a pilot consumes
-                it.</p>
             <p>空中交通管制塔楼可能会乐于做刚好相反的事——不停地发送相同的消息。塔楼中的控制者希望记录同时包含天气和跑道信息的消息，并且提供给所有需要的飞行员。类似披萨店，
                 他们很繁忙，不会费力地在每次飞行员需要时都不停地发送信息。
             </p>
@@ -418,218 +401,220 @@
             <pre class="rholang-file">// ATC sends the info
 @"airportInfo"!!("No wind; Runway 11")
 |
-// Pilot receives the info
+// 飞行员接收信息
 for (info &lt;- @"airportInfo") {
-  0 // Pilot just listens, doesn't do anything
+  0 // 飞行员仅仅监听，不做任何其他事情
 }
 </pre>
 
-            <p>Confirm for yourself that the original send is still in the tuplespace.</p>
-            <h3 id="exercise">Exercise</h3>
-            <p>Modify the above code so that a second pilot also receives the information. Still, the send persists.</p>
-            <p>By the way, did you notice that we don&#39;t need <code>new stdout(...) in {}</code> when we don&#39;t actually use <code>stdout</code>.</p>
-            <p>How many comms happen in <code>for (x &lt;- y) {0} | y!!(0)</code></p>
+            <p>请自行确认一下，原先的发送是否仍然在元组空间内。</p>
+            <h3 id="exercise">练习</h3>
+            <p>注意上述代码，第二名飞行员同样能够接收到信息。发送仍在持续。</p>
+            <p>对了，你注意到了吗？当我们实际上并不使用<code>stdout</code>时，我们不需要<code>new stdout(...) in {}</code></p>
+            <p><code>for (x &lt;- y) {0} | y!!(0)</code>中有多少次通信事件发生？</p>
             <ul class="quiz">
                 <li><input value="correct"  type="radio" name="quiz15" class="quiz"> <code>1</code></li>
-                <li><input value="incorrect" type="radio" name="quiz15" class="quiz"> <code>many</code></li>
+                <li><input value="incorrect" type="radio" name="quiz15" class="quiz"> <code>很多</code></li>
                 <li><input value="incorrect" type="radio" name="quiz15" class="quiz"> <code>0</code></li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz15Correct">Correct!</p>
-                <p class="incorrect" id="quiz15incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz15Correct">正确!</p>
+                <p class="incorrect" id="quiz15incorrect">错误. 请重试.</p>
             </div>
-            <h2 id="double-checking-a-message">Double Checking a Message</h2>
-            <p>Persistent sends and receives are very useful as we just showed. But often normal sends and receives are perfectly good too. Imagine that I send my grandmother a letter, and she receives it.</p>
-
+            <h2 id="double-checking-a-message">二次检查消息</h2>
+            <p>正如我们刚才展示的，持续性发送和接收非常有用。但是，普通的发送和接收也同样足够好了。设想这样的场景：我将一个字母发送给祖母，她接收到了这个消息。</p>
             <pre class="rholang-file">new grandma, stdout(`rho:io:stdout`) in {
-  // I send the message
+  // 我发送一条消息
   grandma!("Meet at the mall at 4:00")
   |
-  // Grandma receives it
+  // 祖母接收到它
   for (msg &lt;- grandma){
     stdout!("I got your message")
   }
 }
 </pre>
 
-            <p>Now Imagine that I want to double check that I sent her the correct time. I could simply consume the message, but then it wouldn&#39;t be around for her to read anymore.</p>
-            <h3 id="exercise">Exercise</h3>
-            <p>Using what you already know, you can achieve this by consuming the message, checking it yourself, and then sending the same message back to the old channel.</p>
-            <p>Give that a try on your own first. The solution is listed below.</p>
-            <p>How many comms happen in <code>for (x &lt;= y) {0} | y!!(0)</code></p>
+            <p>现在我们设想：我想要二次检查我是否给她发送了正确的时间。我可以简单地消费这条消息，但这样一来她就没法读取这个消息了。</p>
+            <h3 id="exercise">练习</h3>
+            <p>依据你所知道的，你可以通过消费这个消息，自行检查它，再将它发送回旧的通道，以达到我们的目的。</p>
+            <p>请自行尝试上面的方案。答案已列在下面。</p>
+            <p><code>for (x &lt;= y) {0} | y!!(0)</code>会产生多少个通信事件？</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz16" class="quiz"> <code>1</code></li>
-                <li><input value="correct"  type="radio" name="quiz16" class="quiz"> <code>many</code></li>
+                <li><input value="correct"  type="radio" name="quiz16" class="quiz"> <code>很多</code></li>
                 <li><input value="incorrect" type="radio" name="quiz16" class="quiz"> <code>0</code></li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz16Correct">Correct!</p>
-                <p class="incorrect" id="quiz16incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz16Correct">正确!</p>
+                <p class="incorrect" id="quiz16incorrect">错误. 请重试.</p>
             </div>
-            <h2 id="answer-to-exercise">Answer to Exercise</h2>
+            <h2 id="answer-to-exercise">答案</h2>
             <p>
 
             </p>
             <pre class="rholang-file">new grandma, stdout(`rho:io:stdout`) in {
-  // I send the message
+  // 我发送一条消息
   grandma!("Meet at the mall at 4:00")
   |
-  // I double check the message
+  // 我二次检查这条消息
   for (msg &lt;- grandma){
     stdout!("Double checking the message")
     |
-    // Put a copy back on the channel for grandma
+    // 将一个副本发送会祖母
     grandma!(*msg)
   }
   |
-  // Grandma receives it
+  // 祖母接收到消息
   for (msg &lt;- grandma){
     stdout!("I got your message")
   }
 }
 </pre>
-            <h2 id="peek-syntax">Peek Syntax</h2>
+            <h2 id="peek-syntax">窥探语法</h2>
             <p class="imgWrapper"><img src="/assets/letterPeak.png" alt="Maybe I&#39;ll just peak at Grandma&#39;s letter through the envelope."></p>
-            <p>Rholang will have a special syntax for this sort of thing eventually. It isn&#39;t available right now, but I&#39;ll show you the syntax just so you&#39;re ready. To &quot;peek&quot; at what&#39;s on a channel without consuming it, use the <span>&lt;!</span> operator.</p>
+            <p>Rho语言最终为上述需求提供了一个特殊的语法。目前我们还不能使用它，但是我会展示给你看。我们将使用<code>&lt;!</code>操作符来"窥探"一个通道内的消息。</p>
+            <pre class="rholang-file">// 提示: Peek目前尚未实现
 
-            <pre class="rholang-file">// REMINDER: Peek is not yet implemented
-
-// I send the message
+// 我发送消息
 &commat;"grandma"!("Meet at the mall at 4:00")
 |
-// I double check the message
+// 我二次检查这条消息
 for (msg &lt;! &commat;"grandma"){
-  0 // Do whatever you do to double check the time
-    // Message is still safely on the channel
+  0 // 请你想做的任何事情来检查时间
+    // 消息在通道中仍然安全
 }
 |
-// Grandma receives it
+// 祖母接收到消息
 for (msg &lt;- &commat;"grandma"){
   &commat;"stdout"!{"I got your message"}
 }
 </pre>
 
-            <p>If you&#39;ve ever written spreadsheet macros, or even used a spreadsheet. Accessing data without consuming it should be familiar. Think of it as</p>
-            <p>Which syntax is used to peek at a message?</p>
+            <p>如果你使用过电子表格宏，或者电子表格，你应该对如何在不消费数据的情况下访问它感到非常熟悉。把它想象成</p>
+            <p>下列哪一个语法是用于窥探一个消息的？</p>
             <ul class="quiz">
                 <li><input value="correct"   type="radio" name="quiz17" class="quiz"> <code>for (x &lt;! y){...}</code></li>
                 <li><input value="incorrect"  type="radio" name="quiz17" class="quiz"> <code>for (x &lt;= y){...}</code></li>
                 <li><input value="incorrect"  type="radio" name="quiz17" class="quiz"> <code>x!!(y)</code></li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz17Correct">Correct!</p>
-                <p class="incorrect" id="quiz17incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz17Correct">正确!</p>
+                <p class="incorrect" id="quiz17incorrect">错误. 请重试.</p>
             </div>
             <p>How many comms happen in <code>for (x &lt;! y) {0} | y!!(0)</code></p>
+            <p><code>for (x &lt;! y) {0} | y!!(0)</code>会产生多少个通信事件</p>
             <ul class="quiz">
                 <li><input value="correct"   type="radio" name="quiz18" class="quiz"> <code>1</code></li>
-                <li><input value="incorrect" type="radio" name="quiz18" class="quiz"> <code>many</code></li>
+                <li><input value="incorrect" type="radio" name="quiz18" class="quiz"> <code>许多</code></li>
                 <li><input value="incorrect" type="radio" name="quiz18" class="quiz"> <code>0</code></li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz18Correct">Correct!</p>
-                <p class="incorrect" id="quiz18incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz18Correct">正确!</p>
+                <p class="incorrect" id="quiz18incorrect">错误. 请重试.</p>
             </div>
 
         </div>
 
         <div class="card" id="joinOperatorSection">
-            <h1 id="join-operator">Join Operator</h1>
-            <h2 id="multiple-data-sources">Multiple data sources</h2>
+            <h1 id="join-operator">求并运算符</h1>
+            <h2 id="multiple-data-sources">多数据源</h2>
             <p class="imgWrapper"><img src="/assets/pushups.png" alt="In general, the winner of this pushup competition can&#39;t be determined until both participants are finished."></p>
-            <p>Occasionally a computation can only be made once data is retrieved (messages are received) from two or more different data sources. For example, you can&#39;t tell whether you won the lottery until you&#39;ve got your ticket number and the winning number. You can&#39;t make change for a purchase until you know the price and the amount tendered. You can&#39;t tell who wins a pushup contest until you know mow many pushups each competitor completed.</p>
-            <p>Rholang has the join operator for exactly this situation. To perform a join, just use the <code>;</code> character.</p>
+            <p>有时候仅当从两个以上不同的数据源获取数据后，才会开始计算。例如，在你得知了你的彩票号码和中奖号码之前，你无法知道你是否赢得大奖。在你知道价格和投标总额之前，你无法对购买决定进行更改。在你赢得俯卧撑比赛之前，你无法知道每个参赛者做了几个俯卧撑</p>
+            <p>Rho语言提供了求并运算符，来应对这种情况。使用<code>;</code>符号来执行一次求并操作。</p>
             <pre class="inline-code">for (p1Pushups &lt;- @"player1"; p2Pushups &lt;- @"player2") {
   @"stdout"!("The winner is...")
 }</pre>
-            <h2 id="rocket-launch">Rocket Launch</h2>
-            <p>A space exploration company wants to make sure their rocket only launches when both of two flight engineers, Alice and Bob, give the launch command. As an example, Bob would give the go ahead by sending <code>BobLaunch!(&quot;launch&quot;)</code>. When both engineers give the command, the rocket can be launched.</p>
-            <h3 id="exercise">Exercise</h3>
+            <h2 id="rocket-launch">火箭着陆</h2>
+            <p>一家空间探索公司想要确保，仅当两个航空工程师，Alice和Bob，都下达了着陆命令后，他们的火箭才会着陆。例如，Bob将通过发送<code>BobLaunch!(&quot;launch&quot;)</code>来下达命令。当两位工程师都下达了命令，那么火箭便可以着陆。</p>
+            <h3 id="exercise">练习</h3>
             <p>Consider how this code might be written using the join operator that we just learned discussed.</p>
-            <h2 id="the-wrong-way">The wrong way</h2>
+            <p>思考一下，使用我们刚提到的求并操作符，应该怎么书写代码呢？</p>
+            <h2 id="the-wrong-way">一个错误的方式</h2>
             <p>One may have been tempted to solve the rocket problem by first receiving one launch command then the other.</p>
+            <p>下面的例子中，其中一人先收到着陆指令，并尝试处理火箭着陆问题，然后再轮到另一个人。</p>
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
-  // Listen for Alice's then Bob's launch commands
+  // 监听Alice的着陆指令，然后是Bob的
   for (x &lt;- @"AliceLaunch"){
     for (y &lt;- @"BobLaunch"){
       stdout!("Launching the rocket")
     }
   }
   |
-  // When ready, Engineers send their commands
+  // 当准备就绪，工程师们发送他们的指令
   @"AliceLaunch"!("launch")
   |
   @"BobLaunch"!("launch")
 }
 </pre>
-            <p>The problem here is when Alice okay&#39;s the launch, but Bob hasn&#39;t yet. Alice should be able to change her mind, but she cannot. Imagine if she suddenly noticed a problem with the rocket, or received some bad news and wanted to abort the launch.</p>
+            <p>问题在于，当Alice批准着陆，而Bob还没有，Alice应该能够更改她的指令，但在此例中她不行。设想一下，如果她突然发觉火箭有一个问题，或者收到了一些不好的消息，想要停止着陆。</p>
             <p class="imgWrapper"><img src="/assets/join.png" alt="No use in grabbing just one set of mail. Might as well wait until the second set"></p>
-            <p>When using a join, she can still change her mind because the <code>for</code> won&#39;t consume her launch message until Bob&#39;s message also appears and is ready to be consumed.</p>
-            <h2 id="launch-solution">Launch Solution</h2>
+            <p>当使用求并时，她依然可以更改她的决定，因为<code>for</code>只会在双方的消息都进入通道并准备好后，才会开始消费双方的消息。</p>
+            <h2 id="launch-solution">着陆的解决方案</h2>
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
-  // Listen for both launch commands
+  // 同时监听两个着陆指令
   for (x &lt;- @"AliceLaunch"; y &lt;- @"BobLaunch"){
     stdout!("Launching the rocket")
   }
   |
-  // When ready, Engineers send their commands
+  // 当准备就绪，工程师们发送他们的指令
   @"AliceLaunch"!("launch")
   |
   @"BobLaunch"!("launch")
 }
 </pre>
-            <p>What code would Alice need to &quot;par in&quot; to retract her launch command.</p>
+            <p>下列哪一段代码是Alice所需，用以撤销着陆命令的？</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz19" class="quiz"> <code>@&quot;AliceCancel&quot;!(&quot;cancelZ&quot;)</code></li>
                 <li><input value="incorrect" type="radio" name="quiz19" class="quiz"> <code>@&quot;AliceLaunch&quot;!(&quot;cancel&quot;)</code></li>
                 <li><input value="correct"  type="radio" name="quiz19" class="quiz"> <code>for (x &lt;- @&quot;AliceLaunch&quot;){0}</code></li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz19Correct">Correct!</p>
-                <p class="incorrect" id="quiz19incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz19Correct">正确!</p>
+                <p class="incorrect" id="quiz19incorrect">错误. 请重试.</p>
             </div>
-            <p>The concept of joins is framed as the dining philosophers problem, and <a href="https://developer.rchain.coop/tutorial/#dining-philosophers-and-deadlock&quot;]">(explored further)</a> in the concise rholang tutorial.</p>
-            <p>In <code>for (x &lt;- y; a &lt;- b){ 0 }</code>, which channel must be sent on first?</p>
+            <p>求并的概念起初是在哲学家进餐问题中被提出，并且在这篇简短的rho语言教程中<a href="https://developer.rchain.coop/tutorial/#dining-philosophers-and-deadlock&quot;]">(更详细的解释)</a></p>
+            <p>在<code>for (x &lt;- y; a &lt;- b){ 0 }</code>中, 应该优先向哪一个通道发送消息？</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz20" class="quiz"> y</li>
                 <li><input value="incorrect" type="radio" name="quiz20" class="quiz"> b</li>
-                <li><input value="correct"  type="radio" name="quiz20" class="quiz"> doesn&#39;t matter</li>
-                <li><input value="incorrect" type="radio" name="quiz20" class="quiz"> they must be sent simultaneously</li>
+                <li><input value="correct"  type="radio" name="quiz20" class="quiz"> 无所谓</li>
+                <li><input value="incorrect" type="radio" name="quiz20" class="quiz"> 应该同时被发送</li>
             </ul>
              <div class="quizResponse">
-                <p class="correct" id="quiz20Correct">Correct!</p>
-                <p class="incorrect" id="quiz20incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz20Correct">正确!</p>
+                <p class="incorrect" id="quiz20incorrect">错误. 请重试.</p>
             </div>
-            <p>In <code>for (x &lt;- y; a &lt;- b){ 0 }</code>, which message will be consumed first?</p>
+            <p>在<code>for (x &lt;- y; a &lt;- b){ 0 }</code>中, 哪一条消息被优先消费？</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz21" class="quiz"> x</li>
                 <li><input value="incorrect" type="radio" name="quiz21" class="quiz"> a</li>
-                <li><input value="incorrect" type="radio" name="quiz21" class="quiz"> doesn&#39;t matter</li>
-                <li><input value="correct"  type="radio" name="quiz21" class="quiz"> they will be consumed simultaneously</li>
+                <li><input value="incorrect" type="radio" name="quiz21" class="quiz"> 无所谓</li>
+                <li><input value="correct"  type="radio" name="quiz21" class="quiz"> 会被同时消费</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz21Correct">Correct!</p>
-                <p class="incorrect" id="quiz21incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz21Correct">正确!</p>
+                <p class="incorrect" id="quiz21incorrect">错误. 请重试.</p>
             </div>
-            <h3 id="exercise">Exercise</h3>
-            <p>There is a game where two players will each send a message on separate channels. Whoever sends the first message, loses, and whoever sends the second message wins. Your task here is to write the game code that will tell which player won. To play the game, players should send messages like shown.</p>
+            <h3 id="exercise">练习</h3>
+            <p>有一个比赛，两名选手将各自在分开的通道发送消息。谁第一个发送了消息，谁就输掉比赛，第二个发送消息的人获胜。你的任务是写一段代码告诉我们谁能赢。参赛选手应按如下方式发送消息。</p>
             <p><code>P1!(&quot;Send any message&quot;)</code>
                 <code>P2!(&quot;Hope I win&quot;)</code></p>
-            <p>Solution to the patience game In this case we actually don&#39;t want to use join because we care which player went first. Hope I didn&#39;t trick you ;)</p>
+            <p>耐心竞赛的解决方案。在这一例子中，我们不使用求并运算，因为我们在意哪个选手先行动。希望我没有骗你;)</p>
             <pre class="rholang-file">new stdout(`rho:io:stdout`) in {
-  // Use the rnode repl to test your code
-  // Send messages like in both orders
+  // 使用rnode repl来测试你的代码
+  // 以两个不同的顺序发送消息
   // @"P1"!("Send any message")
   // @"P2"!("Hope I win")
 
-  // When Player one wins
+
+  // 选手一获胜
   for (m2 &lt;- @"P2"){
     for (m1 &lt;- @"P1"){
       stdout!("Player one wins!")
     }
   }
   |
-  // When player two wins
+  // 选手二获胜
   for (m1 &lt;- @"P1"){
     for (m2 &lt;- @"P2"){
       stdout!("Player two wins!")
@@ -637,28 +622,28 @@ for (msg &lt;- &commat;"grandma"){
   }
 }
 </pre>
-            <p>Like the comment says, you should send the messages in both orders to make sure of who wins. The easiest way to do that right now is probably in the REPL. Another option is to have one player signal the other for when to go as shown below. We&#39;ll explore this concept further in the next unit.</p>
+            <p>正如注释所说，你应该用两种不同的顺序来消费它们的消息，以得知谁最终获得胜利。最早实现的方法可能是在REPL中。另一个方案如下所示，让一个玩家去通知另一个玩家何时执行。我们将在下一单元继续探索这一概念。</p>
             <pre class="rholang-file">new P1, P2, signal in {
-  // P1 sends their message then signals P2 who is waiting
+  // P1发送消息，然后通知正在等待的P2
   P1!("Send any message")
   |
   signal!("Go ahead, I'm done.")
   |
-  // When P2 receives the signal, they send their message
+  // 当P2收到信号，他将发送他的消息
   for (_ &lt;- signal){
     P2!("Hope I win")
   }
 }
 </pre>
-            <p>Why is it possible for nobody to win the patience game as we wrote it above?</p>
+            <p>在上面我们写的代码中，为什么可能出现没有人赢得这场耐心比赛？</p>
             <ul class="quiz">
-                <li><input value="incorrect" type="radio" name="quiz22" class="quiz"> Because both players could send messages at the same time</li>
-                <li><input value="incorrect" type="radio" name="quiz22" class="quiz"> The players are sending on the wrong channels</li>
-                <li><input value="correct"  type="radio" name="quiz22" class="quiz"> The first block receives P2 while the second receives P1, so neither ever finishes</li>
+                <li><input value="incorrect" type="radio" name="quiz22" class="quiz"> 因为两名选手可以同时发送消息 </li>
+                <li><input value="incorrect" type="radio" name="quiz22" class="quiz"> 选手们在错误的通道发送消息 </li>
+                <li><input value="correct"  type="radio" name="quiz22" class="quiz"> 第一个块接收P2，而第二个块接收P1，所以没人能够完成。</li>
             </ul>
             <div class="quizResponse">
-                <p class="correct" id="quiz22Correct">Correct!</p>
-                <p class="incorrect" id="quiz22incorrect">Incorrect. Please try again.</p>
+                <p class="correct" id="quiz22Correct">正确!</p>
+                <p class="incorrect" id="quiz22incorrect">错误. 请重试.</p>
             </div>
         </div>
 
