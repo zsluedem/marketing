@@ -334,9 +334,11 @@
             <p>The big thing to remember is in rholang we <strong>send processes and receive names</strong>. That&#39;s
                 important so I&#39;ll say it again. You always <strong>send a process</strong> and on the other end, you
                 <strong>receive a name</strong>.</p>
-            <p>在rho语言中，我们需要记住的是<strong>发送进程和接收名称</strong>。这很重要，因此我再次强调。你总是<strong>发送一个进程</strong>，在另一端<strong>接收一个名称</strong></p>
+            <p>
+                在rho语言中，我们需要记住的是<strong>发送进程和接收名称</strong>。这很重要，因此我再次强调。你总是<strong>发送一个进程</strong>，在另一端<strong>接收一个名称</strong>
+            </p>
             <p>Aice通过<code>for(message &lt;- @&quot;Alice&quot;)</code>接收我们的消息，所以，
-                 <code>message</code> 变成了一个名称. 当她之后发送给Bob时，她不得不发送进程，所以她借助语句<code>@"Bob"!(*message)</code>使用<code>*</code>将<code>message</code>转变回一个进程。
+                <code>message</code> 变成了一个名称. 当她之后发送给Bob时，她不得不发送进程，所以她借助语句<code>@"Bob"!(*message)</code>使用<code>*</code>将<code>message</code>转变回一个进程。
             </p>
             <h2 id="quiz">小测验</h2>
             <p>我们发送了什么？</p>
@@ -357,7 +359,7 @@
                 <p class="correct" id="quiz8Correct">正确!</p>
                 <p class="incorrect" id="quiz8incorrect">错误. 请重试.</p>
             </div>
-            <p> <code>@&quot;registration&quot;</code>是什么</p>
+            <p><code>@&quot;registration&quot;</code>是什么</p>
             <ul class="quiz">
                 <li><input value="incorrect" type="radio" name="quiz9" class="quiz"> 进程</li>
                 <li><input value="correct" type="radio" name="quiz9" class="quiz"> 名称</li>
@@ -432,23 +434,23 @@
 
 
         <div class="card" id="sendAndPeekSection">
-            <h1 id="persistent-sends-and-peek">Persistent Sends and Peek</h1>
-            <h2 id="why-send-repeatedly-">Why send repeatedly?</h2>
+            <h1 id="persistent-sends-and-peek">持续发送与峰值</h1>
+            <h2 id="why-send-repeatedly-">为什么要重复发送？</h2>
             <p class="imgWrapper"><img src="/assets/broadcasting.png"
                                        alt="This radio navigation aid helps airplanes navigate by broadcasting the same message over and over">
             </p>
-            <p>Our pizza and coffee shops were both interested in receiving many messages on the same reusable channel.
-                We accomplished that with a persistent for <code>for (msg &lt;= chan){...}</code> or a contract <code>contract
-                    chan(msg){...}</code>.</p>
+            <p>我们的披萨和咖啡店都乐于在同一复用通道中接收消息。我们使用一个持续的 <code>for (msg &lt;= chan){...}</code>或者一个合约<code>contract
+                chan(msg){...}</code>来达成这一目的。</p>
             <p>An air traffic control tower may be interested in doing just the opposite -- sending the same message
                 over and over. The controllers in the tower want to record a message containing weather and active
                 runway information once, and make it available for every pilot who needs it. Like the pizza shop, they
                 are busy and can&#39;t be bothered to continually re-send the message every time a pilot consumes
                 it.</p>
-            <h2 id="persistent-send-syntax">Persistent send syntax</h2>
-            <p>The control tower just needs a minor adjustment in their code to make the send persistent. Rather than
-                sending with a single <code>!</code>, they will use a double <code>!!</code>.</p>
-
+            <p>空中交通管制塔楼可能会乐于做刚好相反的事——不停地发送相同的消息。塔楼中的控制者希望记录同时包含天气和跑道信息的消息，并且提供给所有需要的飞行员。类似披萨店，
+                他们很繁忙，不会费力地在每次飞行员需要时都不停地发送信息。
+            </p>
+            <h2 id="persistent-send-syntax">持续发送的语法</h2>
+            <p>控制塔需要在代码上做较小的调整，以使得发送操作能够持续。他们会使用<code>!!</code>而非单个<code>!</code>。</p>
             <pre class="rholang-file">// ATC sends the info
 @"airportInfo"!!("No wind; Runway 11")
 |
